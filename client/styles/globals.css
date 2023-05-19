@@ -1,0 +1,34 @@
+html,
+body {
+    hyphens: auto;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+@font-face {
+    font-family: 'Metamor Bit';
+    font-weight: 400;
+    src: url('/fonts/MetamorBitVF.ttf');
+}
+
+#reader video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}

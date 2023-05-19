@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.radiologie-nuklearmedizin-adickesallee.de
+
+# Sitemaps
+Sitemap: https://www.radiologie-nuklearmedizin-adickesallee.de/sitemap.xml

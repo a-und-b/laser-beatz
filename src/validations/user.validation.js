@@ -22,19 +22,27 @@ const getUsers = {
 
 const getUser = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId),
+    userId: Joi.string(),
+    id: Joi.string().custom(objectId),
   }),
 };
 
 const updateUser = {
   params: Joi.object().keys({
-    userId: Joi.required().custom(objectId),
+    userId: Joi.string(),
   }),
   body: Joi.object()
     .keys({
-      email: Joi.string().email(),
-      password: Joi.string().custom(password),
+      id: Joi.string().custom(objectId).optional(),
+      email: Joi.string().email().optional(),
+      password: Joi.string().custom(password).optional(),
       name: Joi.string(),
+      score: Joi.number(),
+      numr: Joi.number(),
+      username: Joi.string(),
+      role: Joi.string(),
+      url: Joi.string(),
+      userId: Joi.string(),
     })
     .min(1),
 };

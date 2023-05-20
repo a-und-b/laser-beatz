@@ -6,14 +6,31 @@ const { roles } = require('../config/roles');
 
 const userSchema = mongoose.Schema(
   {
-    name: {
+    username: {
+      type: String,
+      required: false,
+      trim: true,
+      default: null,
+    },
+    userId: {
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
+    },
+    score: {
+      type: Number,
+      default: 0,
+    },
+    numr: {
+      type: Number,
+    },
+    url: {
+      type: String,
     },
     email: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
       trim: true,
       lowercase: true,
@@ -25,7 +42,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
       minlength: 8,
       validate(value) {
@@ -39,10 +56,6 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: roles,
       default: 'user',
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
     },
   },
   {

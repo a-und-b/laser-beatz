@@ -33,8 +33,17 @@ const queryUsers = async (filter, options) => {
  * @param {ObjectId} id
  * @returns {Promise<User>}
  */
+const getUserByUserId = async (userId) => {
+  return User.findOne({ userId });
+};
+
+/**
+ * Get user by id
+ * @param {ObjectId} id
+ * @returns {Promise<User>}
+ */
 const getUserById = async (id) => {
-  return User.findById(id);
+  return User.findOne(id);
 };
 
 /**
@@ -66,6 +75,25 @@ const updateUserById = async (userId, updateBody) => {
 };
 
 /**
+ * Update user by id
+ * @param {ObjectId} userId
+ * @param {Object} updateBody
+ * @returns {Promise<User>}
+ */
+const updateUserByUserId = async (userId, updateBody) => {
+  const user = await getUserByUserId(userId);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  }
+  Object.assign(user, updateBody);
+  await user.save();
+  return user;
+};
+
+/**
  * Delete user by id
  * @param {ObjectId} userId
  * @returns {Promise<User>}
@@ -83,7 +111,9 @@ module.exports = {
   createUser,
   queryUsers,
   getUserById,
+  getUserByUserId,
   getUserByEmail,
+  updateUserByUserId,
   updateUserById,
   deleteUserById,
 };

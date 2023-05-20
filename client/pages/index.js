@@ -1,18 +1,37 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material"
+import { Box, Grid, Link, Typography, useTheme } from "@mui/material"
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { UserContext } from "../provider/UserProvider";
+import { isEmpty } from "lodash";
 
 const Main = ({ }) => {
-  const theme = useTheme()
+  const theme = useTheme();
+  const [user] = useContext(UserContext);
+  const router = useRouter();
+
+  console.log('USER', user);
+
+  if (isEmpty(user)) {
+    // router.push('/intro/scanUser');
+  }
+
 
   const renderList = () => (
     <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 5 }}>
-      <Box sx={{ p: 3, borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
-        <Typography variant='h3'>Quest-Log</Typography>
+      <Box sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
+        <Link href='/questLog' sx={{ p: 3, display: 'inline-block', width: '100%' }}>
+          <Typography variant='h3'>Quest-Log</Typography>
+        </Link>
       </Box>
-      <Box sx={{ p: 3, borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
-        <Typography variant='h3'>Live-Highscore</Typography>
+      <Box sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
+        <Link href='/questLog' sx={{ p: 3, display: 'inline-block', width: '100%' }}>
+          <Typography variant='h3'>Live-Highscore</Typography>
+        </Link>
       </Box>
-      <Box sx={{ p: 3 }}>
-        <Typography variant='h3'>Zeitplan</Typography>
+      <Box>
+        <Link href='/questLog' sx={{ p: 3, display: 'inline-block', width: '100%' }}>
+          <Typography variant='h3'>Zeitplan</Typography>
+        </Link>
       </Box>
     </Box>
   );
@@ -27,7 +46,7 @@ const Main = ({ }) => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant='h6' sx={{ mb: 2 }}>Deine Punktzahl</Typography>
-          <Typography variant='h2'>000.000</Typography>
+          <Typography variant='h2'>{user.score}</Typography>
         </Grid>
       </Grid>
       <Typography variant='h3'>Abenteuer</Typography>

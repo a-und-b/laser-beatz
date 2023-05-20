@@ -1,9 +1,16 @@
 import { Box, Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, createTheme, useTheme } from "@mui/material";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useState } from "react";
+import { UserContext } from "../../provider/UserProvider";
+import { updateUser } from "../../api";
 
 const IntroUserSettings = () => {
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('')
+    const [user, setUser] = useContext(UserContext);
     const [theme, setTheme] = useState(useTheme());
+    const router = useRouter();
+
+    console.log('USER SET', user);
 
     const updateTheme = (newPrimaryColor) => {
         const updatedTheme = theme;
@@ -17,15 +24,25 @@ const IntroUserSettings = () => {
         setTheme(updatedTheme);
     }
 
+    const handleSubmit = async () => {
+        try {
+            user.username = username;
+            setUser(user);
+            await updateUser(user);
+            router.push('/intro/welcomeUser');
+        } catch (error) {
+            // TODO: handle error
+        }
+    }
+
     return (
         <Grid>
-            <Typography variant='h2' sx={{ color: theme.palette.primary.main }}>Der Countdown läuft!</Typography>
+            <Typography variant='h2' sx={{ color: theme.palette.primary.main }}>Willkommen, Fremde:r!</Typography>
             <Typography sx={{ mb: 2 }}>Wähle einen Namen – dieser ist für alle teilnehmer sichtbar und wird in der High-Score-Liste angezeigt. Außerdem kannst du eine Skin-Farbe ...</Typography>
             <Box component="form" sx={{ width: '100%' }} noValidate autoComplete="off">
                 <Typography sx={{ fontStyle: 'italic' }}>Name eingeben</Typography>
                 <TextField
                     variant="outlined"
-                    defaultValue='name'
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}
                     sx={{
@@ -53,7 +70,7 @@ const IntroUserSettings = () => {
             <Button
                 variant='contained'
                 sx={{ width: '100%', color: theme.palette.secondary.main }}
-                href="/intro/welcomeUser"
+                onClick={() => handleSubmit()}
             >
                 Ok, auf ins Abenteuer!
             </Button>

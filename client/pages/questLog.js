@@ -19,7 +19,7 @@ const QuestLog = ({ }) => {
 
   return (
     <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
-      <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Hauptmenü</Typography>
+      <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest-Log</Typography>
       <Grid container sx={{ mb: 3 }}>
         <Grid item xs={6}>
           <Typography variant='h6' sx={{ mb: 2 }}>Quests</Typography>

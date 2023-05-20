@@ -3,16 +3,24 @@ import { Box, Button, Container, Grid, Typography, useTheme } from '@mui/materia
 import { Html5Qrcode } from "html5-qrcode";
 import NextImage from 'next/image'
 import { useRouter } from 'next/router';
-import UserProvider from '../../provider/UserProvider';
+import { UserContext } from '../../provider/UserProvider';
+import { getUser } from '../../api';
 
 
 const ScanUser = () => {
   const theme = useTheme();
   const router = useRouter()
-  // const [user, setUser] = useContext(UserProvider);
+  const [user, setUser] = useContext(UserContext);
   const [isScanning, setIsScanning] = useState(false)
 
-  const user = null;
+  const getUserByQRLink = async (decodedText = 'http://pioneers-of-tomorrow.de/n9okhm5k') => {
+    const userId = decodedText.split("http://pioneers-of-tomorrow.de/")[1];
+    const userData = await getUser(userId);
+    console.log('USER DATA', userData);
+    setUser(userData);
+    router.push('/intro/introUserSettings')
+    return userData;
+  };
 
   useEffect(() => {
     if (isScanning) {
@@ -37,8 +45,9 @@ const ScanUser = () => {
               fps: 10,    // Optional, frame per seconds for qr code scanning
               qrbox: { width: 250, height: 500 }  // Optional, if you want bounded box UI
             },
-            (decodedText, decodedResult) => {
-              // setUser({ name: decodedText })
+            async (decodedText, decodedResult) => {
+              const user = await getUserByQRLink();
+              setUser(user);
               router.push('/intro/introUserSettings')
               // do something when code is read
             },
@@ -59,30 +68,28 @@ const ScanUser = () => {
     setIsScanning(true);
   }
 
-  if (!user) {
-    return (
-      <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Typography variant="h2" sx={{ color: theme.palette.primary.main, mb: 2 }}>Pioneers Pass aktivieren</Typography>
-        <Typography sx={{ mb: 2 }}>Scanne den Qr-Code auf deinem Ticket euch den Pioneers of Tomorrow an und erlebt ein Abenteuer voller die Zukunft, von der ihr träumt.</Typography>
-        <Box sx={{ mb: 2, width: '100%' }}>
-          {
-            isScanning
-              ? (
-                <div id='reader' style={{
-                  height: '30vh', width: '100%', position: 'relative',
-                }} />
-              )
-              : (
-                <NextImage src={'/img/scan.png'} width="325" height="200" />
-              )
-          }
-        </Box>
-        <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
-          Code scannen
-        </Button>
-      </Grid >
-    )
-  }
+  return (
+    <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Typography variant="h2" sx={{ color: theme.palette.primary.main, mb: 2 }}>Pioneers Pass aktivieren</Typography>
+      <Typography sx={{ mb: 2 }}>Scanne den Qr-Code auf deinem Ticket euch den Pioneers of Tomorrow an und erlebt ein Abenteuer voller die Zukunft, von der ihr träumt.</Typography>
+      <Box sx={{ mb: 2, width: '100%' }}>
+        {
+          isScanning
+            ? (
+              <div id='reader' style={{
+                height: '30vh', width: '100%', position: 'relative',
+              }} />
+            )
+            : (
+              <NextImage src={'/img/scan.png'} width="325" height="200" />
+            )
+        }
+      </Box>
+      <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => getUserByQRLink()}>
+        Code scannen
+      </Button>
+    </Grid >
+  )
 }
 
 export default ScanUser

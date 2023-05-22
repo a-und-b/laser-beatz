@@ -1,16 +1,14 @@
 import { Box, Grid, Link, Typography, useTheme } from "@mui/material"
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../provider/UserProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import NextImage from 'next/image'
 
 const Main = ({ }) => {
   const theme = useTheme();
-  const [user] = useContext(UserContext);
+  const { user } = useContext(GlobalContext);
   const router = useRouter();
-
-  console.log('USER', user);
 
   useEffect(() => {
     if (isEmpty(user)) {

@@ -1,13 +1,12 @@
-import { ThemeProvider as MuiThemeProvider } from '@mui/material'
-import { createLaserbeatzTheme, emerald } from '../lib/theme'
-import UserProvider from './UserProvider'
+import { ThemeProvider } from '@mui/material'
+import { createLaserbeatzTheme, emerald, getPrimaryColor } from '../lib/theme'
 import { createContext, useEffect, useState } from 'react'
 
 export const GlobalContext = createContext({});
 
 const GlobalProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const defaultTheme = createLaserbeatzTheme(user?.theme || emerald);
+    const defaultTheme = createLaserbeatzTheme(emerald);
     const [theme, setTheme] = useState(defaultTheme);
 
     useEffect(() => {
@@ -16,14 +15,18 @@ const GlobalProvider = ({ children }) => {
         if (stringifiedUser) {
             const parsedUser = JSON.parse(stringifiedUser);
             setUser(parsedUser);
+
+            if (parsedUser.theme) {
+                setTheme(createLaserbeatzTheme(getPrimaryColor(parsedUser.theme)))
+            }
         }
     }, []);
 
     return (
-        <GlobalContext.Provider value={[theme, setTheme, user, setUser]}>
-            <MuiThemeProvider theme={theme}>
+        <GlobalContext.Provider value={{theme, setTheme, user, setUser}}>
+            <ThemeProvider theme={theme}>
                 {children}
-            </MuiThemeProvider>
+            </ThemeProvider>
         </GlobalContext.Provider>
     )
 }

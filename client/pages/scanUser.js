@@ -3,15 +3,16 @@ import { Box, Button, Container, Fade, Grid, Typography, useTheme } from '@mui/m
 import { Html5Qrcode } from "html5-qrcode";
 import NextImage from 'next/image'
 import { useRouter } from 'next/router';
-import { UserContext } from '../provider/UserProvider';
+import { GlobalContext } from '../provider/GlobalProvider';
 import { getUser } from '../api';
+import { isEmpty } from 'lodash';
 
 
 const ScanUser = () => {
   const theme = useTheme();
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
-  const [user, setUser] = useContext(UserContext);
+  const { user, setUser } = useContext(GlobalContext);
   const [isScanning, setIsScanning] = useState(false);
 
   const getUserByQRLinkAndRedirect = async (decodedText = 'http://pioneers-of-tomorrow.de/n9okhm5k') => {
@@ -22,14 +23,14 @@ const ScanUser = () => {
     if (userData.userName) {
       router.push('/')
     } else {
-      router.push('/introUserSettings')
+      router.push('/userSettings')
     }
     return userData;
   };
 
   useEffect(() => {
     console.log('eff', user);
-    if(user) {
+    if (!isEmpty(user)) {
       router.push('/');
     }
 
@@ -76,10 +77,6 @@ const ScanUser = () => {
 
   const startScanner = () => {
     setIsScanning(true);
-  }
-
-  if (user) {
-    return '';
   }
 
   return (

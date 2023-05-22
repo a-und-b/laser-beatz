@@ -1,8 +1,21 @@
 import { createTheme, responsiveFontSizes } from '@mui/material'
 
-export const emerald = '#54EC33';
-export const ember = '#FE7922';
-export const ruby = '#FD12BB';
+export const emerald = "#54EC33";
+export const ember = "#FE7922";
+export const ruby = "#FD12BB";
+
+export const getPrimaryColor = (primaryColor) => {
+  switch (primaryColor) {
+    case 'emerald':
+      return emerald;
+    case 'ember':
+      return ember;
+    case 'ruby':
+      return ruby;
+    default:
+      return emerald;
+  }
+}
 
 const getPrimaryColorName = (primaryColor) => {
   switch (primaryColor) {

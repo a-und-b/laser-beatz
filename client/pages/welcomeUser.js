@@ -1,10 +1,10 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../provider/UserProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 
 const WelcomeUser = () => {
     const theme = useTheme();
-    const [user] = useContext(UserContext);
+    const { user } = useContext(GlobalContext);
 
     console.log('WECOME USER', user);
 

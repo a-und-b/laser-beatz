@@ -1,17 +1,17 @@
 import { Box, Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import { UserContext } from "../provider/UserProvider";
 import { GlobalContext } from "../provider/GlobalProvider";
 import { updateUser } from "../api";
 import { createLaserbeatzTheme, ember, emerald, ruby } from "../lib/theme";
 
-const IntroUserSettings = () => {
+const UserSettings = () => {
     const [username, setUsername] = useState('');
-    const [user, setUser] = useContext(UserContext);
-    const [_, setTheme] = useContext(GlobalContext);
+    const { user, setUser, setTheme } = useContext(GlobalContext);
     const router = useRouter();
     const theme = useTheme();
+
+    console.log('THEME', theme.palette);
 
     const updateTheme = (newPrimaryColor) => {
         let primary;
@@ -38,9 +38,7 @@ const IntroUserSettings = () => {
     const handleSubmit = async () => {
         try {
             user.username = username;
-            console.log('handle submit');
             user.theme = theme.laserbeatzMode;
-            console.log('handle submit');
             setUser(user);
             await updateUser(user);
             router.push('/welcomeUser');
@@ -69,21 +67,22 @@ const IntroUserSettings = () => {
                         }
                     }}
                 />
+                <Typography sx={{ fontStyle: 'italic' }}>Skin auswählen</Typography>
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="emerald"
+                    value={theme.laserbeatzMode}
                     name="radio-buttons-group"
                     sx={{ display: 'flex', flexDirection: 'row' }}
                     onChange={(event) => { updateTheme(event.target.value) }}
                 >
-                    <FormControlLabel value="emerald" control={<Radio color="emerald" />} label="Smaragd" />
-                    <FormControlLabel value="ember" control={<Radio color="ember" />} label="Ember" />
-                    <FormControlLabel value="ruby" control={<Radio color="ruby" />} label="Rubin" />
+                    <FormControlLabel value="emerald" control={<Radio color="emerald" sx={{ color: theme.palette.emerald.main }} />} label="Smaragd" sx={{ flexGrow: 1, pr: '9px', mx:0, border: `1px dashed ${theme.palette.primary.main}`, borderTopLeftRadius: 5, borderBottomLeftRadius: 5,  }} />
+                    <FormControlLabel value="ember" control={<Radio color="ember" sx={{ color: theme.palette.ember.main }} />} label="Ember" sx={{ flexGrow: 1, pr: '9px', mx:0, border: `1px dashed ${theme.palette.primary.main}`, borderRight: 'none', borderLeft: 'none' }} />
+                    <FormControlLabel value="ruby" control={<Radio color="ruby" sx={{ color: theme.palette.ruby.main }} />} label="Rubin" sx={{ flexGrow: 1, pr: '9px', mx:0, border: `1px dashed ${theme.palette.primary.main}`, borderTopRightRadius: 5, borderBottomRightRadius: 5 }} />
                 </RadioGroup>
             </Box>
             <Button
                 variant='contained'
-                sx={{ width: '100%', color: theme.palette.secondary.main }}
+                sx={{ width: '100%', color: theme.palette.secondary.main, mt: 3 }}
                 onClick={() => handleSubmit()}
             >
                 Ok, auf ins Abenteuer!
@@ -92,4 +91,4 @@ const IntroUserSettings = () => {
     );
 }
 
-export default IntroUserSettings;
+export default UserSettings;

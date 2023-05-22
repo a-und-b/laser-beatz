@@ -6,7 +6,10 @@ WORKDIR /usr/src/node-app
 
 COPY package.json package-lock.json ./
 
+
 USER node
+
+RUN npm config set unsafe-perm true
 
 RUN npm install
 

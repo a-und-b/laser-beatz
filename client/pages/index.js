@@ -1,8 +1,9 @@
 import { Box, Grid, Link, Typography, useTheme } from "@mui/material"
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../provider/UserProvider";
 import { isEmpty } from "lodash";
+import NextImage from 'next/image'
 
 const Main = ({ }) => {
   const theme = useTheme();
@@ -11,28 +12,49 @@ const Main = ({ }) => {
 
   console.log('USER', user);
 
+  useEffect(() => {
+    if (isEmpty(user)) {
+      router.push('/scanUser');
+    }
+  }, [user]);
+
   if (isEmpty(user)) {
-    // router.push('/intro/scanUser');
+    return '';
   }
+
+  const listElements = [
+    {
+      title: 'Quest-Log',
+      iconSrc: '/img/icons/scroll.svg',
+      url: '/questLog'
+    },
+    {
+      title: 'Live-Highscore',
+      iconSrc: '/img/icons/trophy.svg',
+      url: '/scoreboard',
+    },
+    {
+      title: 'Zeitplan',
+      iconSrc: '/img/icons/hourglass-clock.svg',
+      url: '/timetable'
+    }
+  ]
+
+  const renderListElement = (entry, index) => (
+    <Box sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }} key={index}>
+        <Link href={entry.url} sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <NextImage src={entry.iconSrc} width={40} height={40} style={{ zIndex: -1 }} />
+            <Typography variant='h3' sx={{ ml: 2, color: 'white', }}>{entry.title}</Typography>
+          </Box>
+        </Link>
+      </Box>
+  )
 
 
   const renderList = () => (
     <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 5 }}>
-      <Box sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
-        <Link href='/questLog' sx={{ p: 3, display: 'inline-block', width: '100%' }}>
-          <Typography variant='h3'>Quest-Log</Typography>
-        </Link>
-      </Box>
-      <Box sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
-        <Link href='/questLog' sx={{ p: 3, display: 'inline-block', width: '100%' }}>
-          <Typography variant='h3'>Live-Highscore</Typography>
-        </Link>
-      </Box>
-      <Box>
-        <Link href='/questLog' sx={{ p: 3, display: 'inline-block', width: '100%' }}>
-          <Typography variant='h3'>Zeitplan</Typography>
-        </Link>
-      </Box>
+      {listElements.map((entry, index) => renderListElement(entry, index,))}
     </Box>
   );
 
@@ -49,11 +71,11 @@ const Main = ({ }) => {
           <Typography variant='h2'>{user.score}</Typography>
         </Grid>
       </Grid>
-      <Typography variant='h3'>Abenteuer</Typography>
+      <Typography variant='h3' sx={{ mb: 1}}>Abenteuer</Typography>
       {renderList()}
-      <Typography variant='h3'>Drumherum</Typography>
+      <Typography variant='h3' sx={{ mb: 1}}>Drumherum</Typography>
       {renderList()}
-      <Typography variant='h3'>Sonstiges</Typography>
+      <Typography variant='h3' sx={{ mb: 1}}>Sonstiges</Typography>
       {renderList()}
     </Grid>
   )

@@ -40,6 +40,7 @@ const updateUser = {
       score: Joi.number(),
       numr: Joi.number(),
       username: Joi.string(),
+      theme: Joi.string(),
       role: Joi.string(),
       url: Joi.string(),
       userId: Joi.string(),

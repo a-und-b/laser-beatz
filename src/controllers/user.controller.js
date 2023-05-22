@@ -16,6 +16,21 @@ const getUsers = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const getHighscores = catchAsync(async (req, res) => {
+  const filter = pick(req.query, ['name', 'role']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await userService.queryUsers(filter, options);
+  const highScoreList = [];
+  result.results.forEach((resu) => {
+    const { username, score } = resu;
+    if (score > 0) {
+      highScoreList.push({ username, score });
+    }
+  });
+  result.results = highScoreList;
+  res.send(result);
+});
+
 const getUser = catchAsync(async (req, res) => {
   const user = await userService.getUserByUserId(req.params.userId);
   if (!user) {
@@ -37,6 +52,7 @@ const deleteUser = catchAsync(async (req, res) => {
 module.exports = {
   createUser,
   getUsers,
+  getHighscores,
   getUser,
   updateUser,
   deleteUser,

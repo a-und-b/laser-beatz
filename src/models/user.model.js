@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
+const Quest = require('./quest.model');
 
 const userSchema = mongoose.Schema(
   {
@@ -11,6 +12,12 @@ const userSchema = mongoose.Schema(
       required: false,
       trim: true,
       default: null,
+    },
+    theme: {
+      type: String,
+      required: false,
+      trim: true,
+      default: 'emerald',
     },
     userId: {
       type: String,
@@ -57,6 +64,7 @@ const userSchema = mongoose.Schema(
       enum: roles,
       default: 'user',
     },
+    // quests: [Quest],
   },
   {
     timestamps: true,

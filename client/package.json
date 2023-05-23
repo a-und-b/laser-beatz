@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 80",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p 80",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "html5-qrcode": "^2.3.8",
     "i": "^0.3.7",
+    "lodash": "^4.17.21",
     "next": "12.2.5",
     "next-sitemap": "^3.1.30",
     "npm": "^9.6.6",

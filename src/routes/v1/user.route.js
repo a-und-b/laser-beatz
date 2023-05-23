@@ -11,6 +11,8 @@ router
   .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
   .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
 
+router.route('/bulkCreation').post(auth('manageUsers'), validate(userValidation.createUsers), userController.createUsers);
+
 router.route('/highscore').get(auth('getUsers'), userController.getHighscores);
 
 router

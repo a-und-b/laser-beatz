@@ -10,6 +10,22 @@ const createUser = {
   }),
 };
 
+const createUsers = {
+  body: Joi.array().items(
+    Joi.object().keys({
+      numr: Joi.string().allow(null),
+      username: Joi.string().allow(null),
+      createdAt: Joi.string().allow(null),
+      updatedAt: Joi.string().allow(null),
+      userId: Joi.string().required(),
+      url: Joi.string().required(),
+      theme: Joi.string().required(),
+      score: Joi.number().required(),
+      role: Joi.string().required().valid('user', 'admin'),
+    })
+  ),
+};
+
 const getUsers = {
   query: Joi.object().keys({
     name: Joi.string(),
@@ -56,6 +72,7 @@ const deleteUser = {
 
 module.exports = {
   createUser,
+  createUsers,
   getUsers,
   getUser,
   updateUser,

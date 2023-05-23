@@ -9,6 +9,20 @@ const createUser = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(user);
 });
 
+const createUsers = catchAsync(async (req, res) => {
+  const users = [];
+
+  req.body.forEach(async (userBody) => {
+    try {
+      const user = await userService.createUser(userBody);
+      users.push(user);
+    } catch (error) {
+      console.error('User could not be created:', error);
+    }
+  });
+  res.status(httpStatus.CREATED).send(users);
+});
+
 const getUsers = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
@@ -51,6 +65,7 @@ const deleteUser = catchAsync(async (req, res) => {
 
 module.exports = {
   createUser,
+  createUsers,
   getUsers,
   getHighscores,
   getUser,

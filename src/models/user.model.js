@@ -21,7 +21,6 @@ const userSchema = mongoose.Schema(
     },
     userId: {
       type: String,
-      required: true,
       trim: true,
       lowercase: true,
     },
@@ -38,7 +37,12 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: false,
-      unique: true,
+      index: {
+        unique: true,
+        partialFilterExpression: {
+          email: { $type: 'string' }
+        }
+      },
       trim: true,
       lowercase: true,
       validate(value) {

@@ -24,7 +24,7 @@ const Countdown = () => {
             </Box> */}
             <Box sx={{ textAlign: 'center' }}>
                 <Typography variant="h3">Bald gibt es hier mehr zu sehen.</Typography>
-                <Typography variant="h3">Mehr Infos auf dem <a style={{ color: theme.palette.primary.main }} href="/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
+                <Typography variant="h3">Mehr Infos auf dem <a style={{ color: theme.palette.primary.main }} href="/documents/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
             </Box>
         </Grid >
     );

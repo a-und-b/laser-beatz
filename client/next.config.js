@@ -12,7 +12,12 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-  }
+  },
+  env: {
+    API_URL: process.env.API_URL,
+    TOKEN: process.env.TOKEN,
+  },
+  output: 'standalone',
 }
 
 module.exports = nextConfig

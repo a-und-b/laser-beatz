@@ -1,6 +1,5 @@
 import { Box, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 import NextImage from 'next/image'
-import Link from "next/link";
 
 const Countdown = () => {
     const theme = useTheme();
@@ -25,7 +24,7 @@ const Countdown = () => {
             </Box> */}
             <Box sx={{ textAlign: 'center' }}>
                 <Typography variant="h3">Bald gibt es hier mehr zu sehen.</Typography>
-                <Typography variant="h3">Mehr Infos auf dem <Link style={{ color: theme.palette.primary.main }} locale={false} href="/pioneers-flyer.pdf" target="_blank">Flyer</Link>.</Typography>
+                <Typography variant="h3">Mehr Infos auf dem <a style={{ color: theme.palette.primary.main }} href="/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
             </Box>
         </Grid >
     );

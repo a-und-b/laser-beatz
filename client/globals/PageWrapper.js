@@ -17,7 +17,7 @@ const PageWrapper = ({ children }) => {
                 <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%' }}>
                     <Box sx={{ width: '100%', height: '100%', position: 'absolute', background: `linear-gradient(${theme.palette.secondary.main} 50%, transparent)` }} />
                     <Box sx={{ width: '100%', height: '100%', position: 'absolute', backdropFilter: 'blur(10px)', mask: 'linear-gradient(black, transparent)' }} />
-                    <Box sx={{ mt: 4, mb: 4, position: 'relative', display: 'flex', height: 100, justifyContent: 'center', }}>
+                    <Box sx={{ mt: 15, mb: 4, position: 'relative', display: 'flex', height: 150, justifyContent: 'center', }}>
                         <Fade in={loaded}>
                             <Link href='/'>
                                 <NextImage src={`/img/logo-${theme.laserbeatzMode}.svg`} layout='fill' />
@@ -25,7 +25,7 @@ const PageWrapper = ({ children }) => {
                         </Fade>
                     </Box>
                 </Box>
-                <Box sx={{ pt: 20 }}></Box>
+                <Box sx={{ pt: 45 }}></Box>
                 <Box sx={{ minHeight: '70vh' }}>
                     {children}
                 </Box>

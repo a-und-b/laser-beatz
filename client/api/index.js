@@ -1,11 +1,11 @@
 import qs from 'qs'
 
 export const getApiUrl = (path = '') => {
-  return 'http://localhost:3004/v1' + path
+  return process.env.API_URL + '/v1' + path
 }
 
 export const fetchApi = async (path, urlParams = {}, options = {}) => {
-  const token = '';
+  const token = process.env.TOKEN;
   const defaultOptions = {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -37,10 +37,16 @@ export const getUser = async (userId) => {
   localStorage.setItem('laserbeatz-user', JSON.stringify(userData));
   return userData;
 }
+
 export const updateUser = async (user) => {
   await fetchApi(`users/${user.userId}`, {}, {
     method: 'PATCH',
     body: JSON.stringify(user)
   });
   localStorage.setItem('laserbeatz-user', JSON.stringify(user));
+}
+
+export const getHighScoreList = async () => {
+ const highScoreData = await fetchApi('users/highscore?sortBy=score:desc&limit=30&page=1'); 
+ return highScoreData;
 }

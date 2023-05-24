@@ -60,6 +60,7 @@ const updateUser = {
       role: Joi.string(),
       url: Joi.string(),
       userId: Joi.string(),
+      quests: Joi.array().optional(),
     })
     .min(1),
 };
@@ -70,12 +71,13 @@ const updateQuest = {
       quest: {
         id: Joi.string().custom(objectId).optional(),
         questId: Joi.string(),
-        userInput: Joi.object(),
+        userInput: Joi.object().optional(),
         type: Joi.string().optional(),
         repeatable: Joi.boolean().optional(),
         totalFinished: Joi.number(),
         totalPoints: Joi.number(),
         pointsPerExecution: Joi.number(),
+        name: Joi.string().optional(),
       },
     })
     .min(1),

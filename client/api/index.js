@@ -50,3 +50,16 @@ export const getHighScoreList = async () => {
  const highScoreData = await fetchApi('users/highscore?sortBy=score:desc&limit=30&page=1'); 
  return highScoreData;
 }
+
+export const updateQuest = async (user, quest) => {
+  if (!quest.userInput) quest.userInput = {};
+  const questData = { quest };
+  console.log('BODY', JSON.stringify(questData));
+  const userData = await fetchApi(`users/${user.userId}/quest`, {}, {
+    method: 'PATCH',
+    body: JSON.stringify(questData)
+  });
+
+  localStorage.setItem('laserbeatz-user', JSON.stringify(userData));
+  return userData;
+}

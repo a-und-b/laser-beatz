@@ -7,7 +7,7 @@ const Logo = () => {
   const router = useRouter()
 
   const handleClick = () => {
-    router.push('/')
+    router.push('/testingYeet')
   }
 
   return (<Box onClick={handleClick} sx={{

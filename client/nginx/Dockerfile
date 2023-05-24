@@ -17,3 +17,5 @@ EXPOSE 80
 
 # Launch NGINX
 CMD [ "nginx", "-g", "daemon off;" ]
+
+RUN echo $(ls /etc/nginx/certs)

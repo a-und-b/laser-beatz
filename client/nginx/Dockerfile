@@ -10,6 +10,8 @@ COPY ./default.conf /etc/nginx/conf.d/
 COPY ./certs/fullchain.pem /etc/nginx/certs/
 COPY ./certs/privkey.pem /etc/nginx/certs/
 
+RUN echo $(ls /etc/nginx/certs)
+
 # Expose the listening port
 EXPOSE 80
 

@@ -40,9 +40,10 @@ const userSchema = mongoose.Schema(
       required: false,
       index: {
         unique: true,
+        sparse: true,
         partialFilterExpression: {
-          email: { $type: 'string' }
-        }
+          email: { $type: 'string' },
+        },
       },
       trim: true,
       lowercase: true,
@@ -72,7 +73,7 @@ const userSchema = mongoose.Schema(
     quests: {
       type: [questSchema],
       default: defaultQuestData,
-    }
+    },
   },
   {
     timestamps: true,

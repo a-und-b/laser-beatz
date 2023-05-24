@@ -6,3 +6,5 @@ services:
     build: ./nginx
     ports:
       - 80:80
+    volumes:
+      - /etc/nginx/certs/:/etc/nginx/certs/

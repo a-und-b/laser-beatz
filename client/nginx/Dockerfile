@@ -13,7 +13,7 @@ COPY ./certs/privkey.pem /etc/nginx/certs/
 RUN echo $(ls /etc/nginx/certs)
 
 # Expose the listening port
-EXPOSE 80
+EXPOSE 443
 
 # Launch NGINX
 CMD [ "nginx", "-g", "daemon off;" ]

@@ -1,25 +1,5 @@
 const mongoose = require('mongoose');
-const { toJSON, paginate } = require('./plugins');
-
-const questSchema = mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-            trim: true,
-            default: null,
-        },
-        input: {
-            type: Object,
-            required: false,
-            default: null,
-        },
-    }
-);
-
-// add plugin that converts mongoose to json
-questSchema.plugin(toJSON);
-questSchema.plugin(paginate);
+const questSchema = require('./schemas/quest.schema');
 
 /**
  * @typedef Quest

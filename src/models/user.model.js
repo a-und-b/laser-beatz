@@ -3,7 +3,8 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
-const Quest = require('./quest.model');
+const questSchema = require('./schemas/quest.schema');
+const defaultQuestData = require('./data/quests.default');
 
 const userSchema = mongoose.Schema(
   {
@@ -68,7 +69,10 @@ const userSchema = mongoose.Schema(
       enum: roles,
       default: 'user',
     },
-    // quests: [Quest],
+    quests: {
+      type: [questSchema],
+      default: defaultQuestData,
+    }
   },
   {
     timestamps: true,

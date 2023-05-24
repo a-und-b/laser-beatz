@@ -24,7 +24,6 @@ const createUser = async (userBody) => {
 const createUsers = async (users) => {
   const createdUsers = [];
   users.forEach(async (userBody) => {
-    console.log(userBody);
     createdUsers.push(User.create(userBody));
   });
   return createdUsers;
@@ -50,6 +49,7 @@ const queryUsers = async (filter, options) => {
  * @returns {Promise<User>}
  */
 const getUserByUserId = async (userId) => {
+  console.log('GET BY USERID', userId);
   return User.findOne({ userId });
 };
 
@@ -123,6 +123,47 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
+/**
+ * Update user quests by id
+ * @param {ObjectId} userId
+ * @param {Quest} updatedQuestData
+ * @returns {Promise<User>}
+ */
+const updateUserQuestById = async (userId, updatedQuestData) => {
+  const user = await getUserByUserId(userId);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+
+  const { questId, userInput, pointsPerExecution } = updatedQuestData;
+
+  const [questsToUpdate, remainingQuests] = user.quests.reduce(
+    (result, quest) => {
+      result[quest.questId === questId ? 0 : 1].push(quest);
+      return result;
+    },
+    [[], []]
+  );
+
+  const questToUpdate = questsToUpdate[0];
+
+  if (questToUpdate.totalFinished === 1 && !questToUpdate.repeatable) {
+    // TODO: add to response that max execution amount of quest is already reached
+    return user;
+  }
+
+  questToUpdate.userInput = userInput;
+  questToUpdate.totalFinished += 1;
+  questToUpdate.totalPoints += pointsPerExecution;
+
+  remainingQuests.push(questToUpdate);
+  user.quests = remainingQuests;
+  user.score += pointsPerExecution;
+
+  await user.save();
+  return user;
+};
+
 module.exports = {
   createUser,
   createUsers,
@@ -133,4 +174,5 @@ module.exports = {
   updateUserByUserId,
   updateUserById,
   deleteUserById,
+  updateUserQuestById,
 };

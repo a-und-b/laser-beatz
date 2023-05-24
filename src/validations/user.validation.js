@@ -64,6 +64,23 @@ const updateUser = {
     .min(1),
 };
 
+const updateQuest = {
+  body: Joi.object()
+    .keys({
+      quest: {
+        id: Joi.string().custom(objectId).optional(),
+        questId: Joi.string(),
+        userInput: Joi.object(),
+        type: Joi.string().optional(),
+        repeatable: Joi.boolean().optional(),
+        totalFinished: Joi.number(),
+        totalPoints: Joi.number(),
+        pointsPerExecution: Joi.number(),
+      },
+    })
+    .min(1),
+};
+
 const deleteUser = {
   params: Joi.object().keys({
     userId: Joi.string().custom(objectId),
@@ -77,4 +94,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  updateQuest,
 };

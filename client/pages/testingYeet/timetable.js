@@ -9,15 +9,15 @@ const Timetable = () => {
         },
         {
             time: "16:30 Uhr",
-            event: "Start"
+            event: "Begrüßung + Start"
         },
         {
             time: "20:30 Uhr",
             event: "Siegerehrung"
         },
         {
-            time: "20:30 Uhr",
-            event: "Party-Time!"
+            time: "21:00 Uhr",
+            event: "Neon-Party"
         },
         {
             time: "23:00 Uhr",

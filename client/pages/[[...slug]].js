@@ -1,9 +1,20 @@
 import { Box, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 import NextImage from 'next/image'
+import Countdown from 'react-countdown';
 
 
-const Countdown = () => {
+const Landing = () => {
     const theme = useTheme();
+
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+        } else {
+          // Render a countdown
+          return <Typography variant="h2" color={theme.palette.primary.main}>{days} Tage {hours}:{minutes}:{seconds}</Typography>;
+        }
+      };
+
+      console.log(new Date(Date.UTC(2023, 5, 3, 14, 0, 0)));
     
 
     return (
@@ -25,11 +36,15 @@ const Countdown = () => {
                 <Typography variant='h3' sx={{ color: theme.palette.primary.main, position: 'absolute' }}>000:00:00</Typography>
             </Box> */}
             <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h3">Bald gibt es hier mehr zu sehen.</Typography>
+                <Countdown
+                    date={new Date(Date.UTC(2023, 5, 3, 14, 0, 0))} 
+                    renderer={renderer}
+                />
+                <Typography variant="h3" sx={{ mt: 5 }}>Bald gibt es hier mehr zu sehen.</Typography>
                 <Typography variant="h3">Mehr Infos auf dem <a style={{ color: theme.palette.primary.main }} href="https://cdn.andersundbesser.de/pioneers/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
             </Box>
         </Grid >
     );
 }
 
-export default Countdown;
+export default Landing;

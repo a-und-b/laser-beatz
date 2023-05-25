@@ -1,19 +1,15 @@
-import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getHighScoreList } from "../../api";
 
-const Scoreboard = () => {
-    const theme = useTheme()
-    const [highscoreList, setHighscoreList] = useState(null);
-
-    const handleGetHighscore = async () => {
-        const data = await getHighScoreList();
-        setHighscoreList(data.results);
-    }
+const Scoreboard = ({ highscoreList }) => {
+    const theme = useTheme();
 
     if (!highscoreList) {
         return (
-            <Button onClick={() => handleGetHighscore()}>Click for now</Button>
+            <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', justifyContent: 'center' }}>
+                <CircularProgress />
+            </Grid>
         );
     }
 
@@ -35,5 +31,12 @@ const Scoreboard = () => {
         </Grid>
     )
 }
+
+export const getStaticProps = async () => {
+    const highscoreListRes = await getHighScoreList();
+    const highscoreList = highscoreListRes.results;
+
+    return { props: { highscoreList }};
+};
 
 export default Scoreboard;

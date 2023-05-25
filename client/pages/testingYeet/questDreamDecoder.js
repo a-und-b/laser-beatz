@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { updateQuest } from "../../api";
 import { GlobalContext } from "../../provider/GlobalProvider";
 import { isEmpty } from "lodash";
+import Gem from "../../shared/Other/Gem";
 
 const DreamDecoder = () => {
     const questId = "1";
@@ -23,9 +24,12 @@ const DreamDecoder = () => {
         quest.userInput.ideas = [];
     }
 
+
     const [input, setInput] = useState('');
-    const [isInAddingMode, setIsInAddingMode] = useState(true);
+    const [isInAddingMode, setIsInAddingMode] = useState(!quest.userInput?.ideas.length);
     const [ideas, setIdeas] = useState(quest.userInput?.ideas || []);
+
+    console.log('DREAM DECODERR', ideas, isInAddingMode);
 
     const handleSaveIdea = async () => {
         ideas.push(input);
@@ -81,10 +85,15 @@ const DreamDecoder = () => {
                 <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 5 }}>
                     {ideas.map((idea, index) => renderListElement(idea, index))}
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleAddAnotherIdea()}>+</Button>
-                    <Button variant='contained' sx={{ width: '100%' }} href="/testingYeet/finishedMainQuest">Erledigt</Button>
-                </Box>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}>
+                        <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} onClick={() => handleAddAnotherIdea()}>+</Button>
+                    </Grid>
+                    <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems:'center' }}>
+                        <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} href="/testingYeet/finishedMainQuest">Erledigt</Button>
+                        <Gem size={75} sx={{position: 'absolute', right: -20 }} />
+                    </Grid>
+                </Grid>
             </Grid>
         );
     }

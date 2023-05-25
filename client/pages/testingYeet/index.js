@@ -4,6 +4,11 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import NextImage from 'next/image'
+import ScrollIcon from "../../shared/Icons/Scroll";
+import TrophyIcon from "../../shared/Icons/Trophy";
+import HourglassIcon from "../../shared/Icons/Hourglass";
+import SparklesIcon from "../../shared/Icons/Sparkles";
+import QuestionIcon from "../../shared/Icons/Question";
 
 const Main = ({ }) => {
   const theme = useTheme();
@@ -25,17 +30,17 @@ const Main = ({ }) => {
   const listElements1 = [
     {
       title: 'Quest-Log',
-      iconSrc: '/img/icons/scroll.svg',
+      icon: <ScrollIcon fill={theme.palette.primary.main} />,
       url: '/testingYeet/questLog'
     },
     {
       title: 'Live-Highscore',
-      iconSrc: '/img/icons/trophy.svg',
+      icon: <TrophyIcon fill={theme.palette.primary.main} />,
       url: '/testingYeet/scoreboard',
     },
     {
       title: 'Zeitplan',
-      iconSrc: '/img/icons/hourglass-clock.svg',
+      icon: <HourglassIcon fill={theme.palette.primary.main} />,
       url: '/testingYeet/timetable'
     }
   ]
@@ -43,17 +48,17 @@ const Main = ({ }) => {
   const listElements2 = [
     {
       title: 'Neuigkeiten',
-      iconSrc: '/img/icons/scroll.svg',
+      icon: <SparklesIcon fill={theme.palette.primary.main} />,
       url: '/testingYeet/news'
     },
     {
       title: 'Hilfe und Info',
-      iconSrc: '/img/icons/trophy.svg',
+      icon: <QuestionIcon fill={theme.palette.primary.main} />,
       url: '/testingYeet/helpInfo'
     },
     {
       title: 'Zeitplan',
-      iconSrc: '/img/icons/hourglass-clock.svg',
+      icon: <HourglassIcon fill={theme.palette.primary.main} />,
       url: '/timetable'
     }
   ]
@@ -62,7 +67,8 @@ const Main = ({ }) => {
     <Box sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }} key={index}>
         <Link href={entry.url} sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <NextImage src={entry.iconSrc} width={40} height={40} style={{ zIndex: -1 }} />
+            {entry.icon}
+            {/* <NextImage src={entry.iconSrc} width={40} height={40} style={{ zIndex: -1 }} /> */}
             <Typography variant='h3' sx={{ ml: 2, color: 'white', }}>{entry.title}</Typography>
           </Box>
         </Link>

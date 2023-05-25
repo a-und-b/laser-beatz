@@ -1,5 +1,6 @@
 import NextImage from 'next/image'
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import Gem from '../../shared/Other/Gem';
 
 const FinishedMainQuest = () => {
     const theme = useTheme();
@@ -10,7 +11,10 @@ const FinishedMainQuest = () => {
             </Box>
             <Typography variant='h5' sx={{ textAlign: 'center', mb: 2 }}>Quest abgeschlossen</Typography>
             <Typography variant='h1' sx={{ textAlign: 'center', mb: 2, color: theme.palette.primary.main }}>“Du hast dir einen Kristall verdient!“</Typography>
-            <Button variant='contained' sx={{ width: '100%' }} href="/questLog">Weiter geht's!</Button>
+            <Button variant='contained' sx={{ width: '100%' }} href="/questLog">
+                Weiter geht's!
+                <Gem />
+            </Button>
         </Grid>
     ); 
 }

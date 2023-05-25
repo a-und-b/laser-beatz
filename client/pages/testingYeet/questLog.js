@@ -4,6 +4,7 @@ import { GlobalContext } from "../../provider/GlobalProvider";
 import NextImage from 'next/image'
 import StarFilledIcon from "../../shared/Icons/StarFilled";
 import StarOutlineIcon from "../../shared/Icons/StarOutline";
+import Gem from "../../shared/Other/Gem";
 
 const QuestLog = ({ }) => {
   const theme = useTheme();
@@ -16,16 +17,19 @@ const QuestLog = ({ }) => {
       title: 'Dream Decoder',
       url: '/testingYeet/questDreamDecoder',
       finished: user.quests.filter(quest => quest.questId === '1')[0].totalFinished > 0,
+      gemColor: 'emerald',
     },
     {
       title: 'Digital District',
       url: '/testingYeet/questDigitalDistrict',
       finished: user.quests.filter(quest => quest.questId === '2')[0].totalFinished > 0,
+      gemColor: 'ember',
     },
     {
       title: 'Crypto Station',
       url: '/testingYeet/questCryptoStation',
       finished: user.quests.filter(quest => quest.questId === '3')[0].totalFinished > 0,
+      gemColor: 'ruby',
     }
   ];
 
@@ -71,9 +75,7 @@ const QuestLog = ({ }) => {
     <Box key={index} sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
       <Link sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none', color: 'white' }} href={entry.url}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ width: 50, height: 50, borderRadius: 50, border: `1px solid ${theme.palette.primary.main}`, mr: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {entry.finished && 'X'}
-          </Box>
+          <Gem size={50} type={entry.gemColor} sx={{ mr: 2 }} empty={!entry.finished} />
           <Typography variant='h3'>{entry.title}</Typography>
         </Box>
       </Link>
@@ -90,7 +92,7 @@ const QuestLog = ({ }) => {
     <Box key={index} sx={{ borderBottom: `1px dashed ${theme.palette.primary.main}` }}>
       <Link sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none', color: 'white' }} href={entry.url}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {entry.finished ? <StarFilledIcon fill={theme.palette.primary.main} /> : <StarOutlineIcon fill={theme.palette.primary.main} /> }
+          {entry.finished ? <StarFilledIcon fill={theme.palette.primary.main} /> : <StarOutlineIcon fill={theme.palette.primary.main} />}
           <Typography variant='h5' sx={{ ml: 2 }}>{entry.title}</Typography>
         </Box>
       </Link>

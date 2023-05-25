@@ -4,10 +4,9 @@ const config = require('./config/config');
 const logger = require('./config/logger');
 
 let server;
-mongoose.connect(config.mongoose.url, config.mongoose.options).then((a, b) => {
-  console.log('-----A:', a);
-  console.log('-----B:', b);
-  const dbo = b.db('node-boilerplate');
+mongoose.connect(config.mongoose.url, config.mongoose.options).then((db) => {
+  console.log('-----DB:', db);
+  const dbo = db.db('node-boilerplate');
   console.log('DBO', dbo);
   // dbo.collection("customers").drop(function(err, delOK) {
   //   if (err) throw err;

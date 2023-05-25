@@ -5,15 +5,7 @@ const logger = require('./config/logger');
 
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then((db) => {
-  console.log('-----DB:', db);
-  console.log('DBO 1', db.connections[0].collection);
-  console.log('DBO 2', db.connections[0].collection('users'));
-  db.connections[0].collection('users').drop();
-  // dbo.collection("customers").drop(function(err, delOK) {
-  //   if (err) throw err;
-  //   if (delOK) console.log("Collection deleted");
-  //   db.close();
-  // });
+  // db.connections[0].collection('users').drop();
   logger.info('Connected to MongoDB');
   server = app.listen(config.port, () => {
     logger.info(`Listening to port ${config.port}`);

@@ -1,24 +1,61 @@
-import { Button, Grid, Typography, useTheme } from "@mui/material";
-import { useContext } from "react";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import { updateQuest } from "../../api";
 import { useRouter } from "next/router";
+import FaceSmileFilledIcon from "../../shared/Icons/FaceSmileFilled";
+import FaceSmileOutlineIcon from "../../shared/Icons/FaceSmileOutline";
+import FaceThinkingFilledIcon from "../../shared/Icons/FaceThinkingFilled";
+import FaceThinkingOutlineIcon from "../../shared/Icons/FaceThinkingOutline";
+import FaceFrowningFilledIcon from "../../shared/Icons/FaceFrowningFilled";
+import FaceFrowningOutlineIcon from "../../shared/Icons/FaceFrowningOutline";
 
 const DigitalDistrict = () => {
+    const districtData = [
+        {
+            name: "Wittelsbacher Park",
+            rating: null,
+        },
+        {
+            name: "Königstraße",
+            rating: null,
+        },
+        {
+            name: "Bahnhofsplatz",
+            rating: null,
+        },
+        {
+            name: "Freibad",
+            rating: null,
+        }
+    ];
     const theme = useTheme();
-    const router = useRouter()
+    const router = useRouter();
     const questId = "2";
     const { user } = useContext(GlobalContext);
-    
+
     if (!user || isEmpty(user)) {
         return '';
     };
 
     const quest = user.quests.filter((quest) => quest.questId === questId)[0];
 
+    if (!quest.userInput) {
+        quest.userInput = {};
+    }
+
+    if (!quest.userInput?.ideas?.length) {
+        quest.userInput.districts = [];
+    }
+
+    console.log(quest.userInput);
+
+    const [districts, setDistricts] = useState(quest.userInput.districts.length ? quest.userInput.districts :  districtData);
+
     const handleFinish = async () => {
         try {
+            // TODO: user input stays empty??
             await updateQuest(user, quest);
             router.push('/testingYeet/questLog');
         } catch (error) {
@@ -26,11 +63,49 @@ const DigitalDistrict = () => {
         }
     }
 
+    const primaryColor = theme.palette.primary.main;
+
+    const handleDistrictRatingChange = (districtIndex, rating) => {
+        districts[districtIndex].rating = rating;
+        quest.userInput.districts = districts;
+        setDistricts([...districts]);
+    }
+
     return (
         <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
             <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Digital District</Typography>
+            <Box sx={{ mb: 1, display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant='h6' >Orte markieren</Typography>
+                <Typography variant='h6' >{districts.filter(district => district.rating).length} von {districts.length}</Typography>
+            </Box>
+            <Box sx={{ border: `1px dashed ${primaryColor}`, borderRadius: '5px' }}>
+                {
+                    districts.map((district, districtIndex) => (
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px dashed ${primaryColor}` }}>
+                            <Box sx={{ p: 2, flexGrow: 1 }}>
+                                <Typography>{district.name}</Typography>
+                            </Box>
+                            <Box sx={{ p: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
+                                <Button onClick={() => handleDistrictRatingChange(districtIndex, 'good')}>
+                                    {district.rating === 'good' ? <FaceSmileFilledIcon fill={primaryColor} /> : <FaceSmileOutlineIcon fill={primaryColor} />}
+                                </Button>
+                            </Box>
+                            <Box sx={{ p: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
+                                <Button onClick={() => handleDistrictRatingChange(districtIndex, 'neutral')}>
+                                    {district.rating === 'neutral' ? <FaceThinkingFilledIcon fill={primaryColor} /> : <FaceThinkingOutlineIcon fill={primaryColor} />}
+                                </Button>
+                            </Box>
+                            <Box sx={{ p: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
+                                <Button onClick={() => handleDistrictRatingChange(districtIndex, 'bad')}>
+                                    {district.rating === 'bad' ? <FaceFrowningFilledIcon fill={primaryColor} /> : <FaceFrowningOutlineIcon fill={primaryColor} />}
+                                </Button>
+                            </Box>
+                        </Box>
+                    ))
+                }
+            </Box>
             <Button onClick={handleFinish}>Finish</Button>
-        </Grid>
+        </Grid >
     )
 }
 

@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nginx: 
+    build: ./
+    ports:
+      - 443:443
+      - 80:80

@@ -6,8 +6,7 @@ const logger = require('./config/logger');
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then((db) => {
   console.log('-----DB:', db);
-  const dbo = db.db('node-boilerplate');
-  console.log('DBO', dbo);
+  console.log('DBO', db.collection('users'));
   // dbo.collection("customers").drop(function(err, delOK) {
   //   if (err) throw err;
   //   if (delOK) console.log("Collection deleted");

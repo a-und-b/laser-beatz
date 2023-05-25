@@ -16,7 +16,7 @@ const ScanUser = () => {
   const [isScanning, setIsScanning] = useState(false);
 
   const getUserByQRLinkAndRedirect = async (decodedText = 'http://pioneers-of-tomorrow.de/n9okhm5k') => {
-    const userId = decodedText.split("http://pioneers-of-tomorrow.de/")[1];
+    const userId = decodedText.split("pioneers-of-tomorrow.de/")[1];
     const userData = await getUser(userId);
     setUser(userData);
     if (userData.userName) {

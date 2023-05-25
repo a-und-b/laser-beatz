@@ -11,10 +11,10 @@ export const fetchApi = async (path, urlParams = {}, options = {}) => {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json', 
     }
-  }
+  };
   const mergedOptions = {
     ...defaultOptions, ...options,
-  }
+  };
 
   
   // Request URL

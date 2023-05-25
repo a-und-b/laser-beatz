@@ -10,18 +10,18 @@ router
   .route('/')
   .post(validate(userValidation.createUser), userController.createUser)
   // .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
-  .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
+  .get(/*auth('getUsers'),*/ validate(userValidation.getUsers), userController.getUsers);
 
 // router.route('/bulkCreation').post(auth('manageUsers'), validate(userValidation.createUsers), userController.createUsers);
 router.route('/bulkCreation').post(validate(userValidation.createUsers), userController.createUsers);
 
 router.route('/highscore').get(auth('getUsers'), userController.getHighscores);
 
-router.route('/:userId/quest').patch(auth('getUsers'), validate(userValidation.updateQuest), userController.updateQuest);
+router.route('/:userId/quest').patch(/*auth('getUsers'),*/ validate(userValidation.updateQuest), userController.updateQuest);
 
 router
   .route('/:userId')
-  .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
+  .get(/*auth('getUsers'),*/ validate(userValidation.getUser), userController.getUser)
   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 

@@ -6,7 +6,7 @@ import Countdown from 'react-countdown';
 const Landing = () => {
     const theme = useTheme();
 
-    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    const renderer = ({ days, formatted: { hours, minutes, seconds }, completed }) => {
         if (completed) {
         } else {
           // Render a countdown
@@ -39,6 +39,7 @@ const Landing = () => {
                 <Countdown
                     date={new Date(Date.UTC(2023, 5, 3, 14, 0, 0))} 
                     renderer={renderer}
+                    zeroPadTime={2}
                 />
                 <Typography variant="h3" sx={{ mt: 5 }}>Bald gibt es hier mehr zu sehen.</Typography>
                 <Typography variant="h3">Mehr Infos auf dem <a style={{ color: theme.palette.primary.main }} href="https://cdn.andersundbesser.de/pioneers/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>

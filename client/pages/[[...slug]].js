@@ -41,8 +41,7 @@ const Landing = () => {
                     renderer={renderer}
                     zeroPadTime={2}
                 />
-                <Typography variant="h3" sx={{ mt: 5 }}>Bald gibt es hier mehr zu sehen.</Typography>
-                <Typography variant="h3">Mehr Infos auf dem <a style={{ color: theme.palette.primary.main }} href="https://cdn.andersundbesser.de/pioneers/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
+                <Typography variant="h3" sx={{ mt: 5 }}>Bald gibt es hier mehr zu sehen. Mehr Infos auf dem <br/> <a style={{ color: theme.palette.primary.main }} href="https://cdn.andersundbesser.de/pioneers/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
             </Box>
         </Grid >
     );

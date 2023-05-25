@@ -8,10 +8,12 @@ const router = express.Router();
 
 router
   .route('/')
-  .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
+  .post(validate(userValidation.createUser), userController.createUser)
+  // .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
   .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
 
-router.route('/bulkCreation').post(auth('manageUsers'), validate(userValidation.createUsers), userController.createUsers);
+// router.route('/bulkCreation').post(auth('manageUsers'), validate(userValidation.createUsers), userController.createUsers);
+router.route('/bulkCreation').post(validate(userValidation.createUsers), userController.createUsers);
 
 router.route('/highscore').get(auth('getUsers'), userController.getHighscores);
 

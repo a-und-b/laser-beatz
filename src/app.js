@@ -41,10 +41,10 @@ app.use(compression());
 // enable cors
 app.use(
   cors({
-    origin: true,
+    origin: 'https://pioneers-of-tomorrow.de',
   })
 );
-app.options('*', cors({ origin: true }));
+app.options('*', cors({ origin: 'https://pioneers-of-tomorrow.de' }));
 
 // jwt authentication
 app.use(passport.initialize());

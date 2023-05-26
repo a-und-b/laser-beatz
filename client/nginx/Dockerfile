@@ -9,6 +9,8 @@ COPY ./default.conf /etc/nginx/conf.d/
 
 COPY ./certs/fullchain.pem /etc/nginx/certs/
 COPY ./certs/privkey.pem /etc/nginx/certs/
+COPY ./certs/api/fullchain.pem /etc/nginx/certs/api/
+COPY ./certs/api/privkey.pem /etc/nginx/certs/api/
 
 RUN echo $(ls /etc/nginx/certs)
 

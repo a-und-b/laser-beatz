@@ -2,7 +2,7 @@ import { Box, Button, CircularProgress, Grid, Typography, useTheme } from "@mui/
 import { useEffect, useState } from "react";
 import { getHighScoreList } from "../../api";
 
-const Scoreboard = ({ highscoreList }) => {
+const Scoreboard = ({ highscoreList = [] }) => {
     const theme = useTheme();
 
     if (!highscoreList) {

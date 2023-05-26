@@ -93,7 +93,7 @@ const ScanUser = () => {
                 }} />
               )
               : (
-                <NextImage src={'/img/scan.png'} width="600" height="369" />
+                <NextImage src={'/img/scan.svg'} width="600" height="369" />
               )
           }
         </Box>

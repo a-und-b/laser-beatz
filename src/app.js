@@ -38,13 +38,14 @@ app.use(mongoSanitize());
 // gzip compression
 app.use(compression());
 
+const corsSettings = {
+  origin: true,
+  methods: 'GET,POST,PATCH,OPTIONS',
+};
+
 // enable cors
-app.use(
-  cors({
-    origin: 'https://pioneers-of-tomorrow.de',
-  })
-);
-app.options('*', cors({ origin: 'https://pioneers-of-tomorrow.de' }));
+app.use(cors(corsSettings));
+app.options('*', cors(corsSettings));
 
 // jwt authentication
 app.use(passport.initialize());

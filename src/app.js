@@ -39,10 +39,12 @@ app.use(mongoSanitize());
 app.use(compression());
 
 // enable cors
-app.use(cors({
-  origin: true,
-}));
-app.options('*', cors());
+app.use(
+  cors({
+    origin: true,
+  })
+);
+app.options('*', cors({ origin: true }));
 
 // jwt authentication
 app.use(passport.initialize());

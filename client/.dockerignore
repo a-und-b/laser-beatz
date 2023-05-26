@@ -1,10 +1,10 @@
-.git/
+.git
 .gitignore
 **/.gitkeep
 **/.DS_Store
-.next/
+.next
 .dockerignore
 Dockerfile
 docker-compose.yml
-node_modules/
+node_modules
 README.md

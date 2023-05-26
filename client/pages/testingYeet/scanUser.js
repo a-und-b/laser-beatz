@@ -6,6 +6,7 @@ import { GlobalContext } from '../../provider/GlobalProvider';
 import { getUser } from '../../api';
 import { isEmpty } from 'lodash';
 import Scanner from '../../shared/Other/Scanner';
+import ScanPlaceholder from '../../shared/Other/ScanPlaceholder';
 
 
 const ScanUser = () => {
@@ -17,6 +18,7 @@ const ScanUser = () => {
 
   const getUserByQRLinkAndRedirect = async (decodedText = 'http://pioneers-of-tomorrow.de/n9okhm5k') => {
     const userId = decodedText.split("pioneers-of-tomorrow.de/")[1];
+    alert('Fetch user:', userId);
     const userData = await getUser(userId);
     setUser(userData);
     if (userData.userName) {
@@ -41,6 +43,7 @@ const ScanUser = () => {
 
   const onScannedQRCode = async (decodedText) => {
     console.log('osqrc', decodedText);
+    alert('Read:', decodedText);
     await getUserByQRLinkAndRedirect(decodedText);
   }
 
@@ -56,7 +59,7 @@ const ScanUser = () => {
                 <Scanner isScanning={isScanning} onScannedQRCode={onScannedQRCode}/>
               )
               : (
-                <NextImage src={'/img/scan.png'} width="600" height="369" />
+                <ScanPlaceholder fill={theme.palette.primary.main} />
               )
           }
         </Box>

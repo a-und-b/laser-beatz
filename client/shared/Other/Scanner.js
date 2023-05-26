@@ -12,10 +12,8 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
                  * { id: "id", label: "label" }
                 */
                 if (devices && devices.length) {
-                    var cameraId = devices[devices.length === 2 ? 1 : 0].id;
-
                     html5Qrcode.start(
-                        cameraId,
+                        { facingMode: 'environment' },
                         {
                             fps: 10,    // Optional, frame per seconds for qr code scanning
                             qrbox: { width: 250, height: 500 }  // Optional, if you want bounded box UI
@@ -26,10 +24,10 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
                             html5Qrcode.stop();
                         },
                         (errorMessage) => {
-                            // ERROR IS THROWN WHEN NO BARCODE IS FOUND
+                            // ERROR IS THROWN WHEN NO BARCODE IS FOUND                            
                         })
-                        .catch((err) => {
-                            console.log('ERR', err)
+                        .catch((err, b) => {
+                            console.log('ERR', err, b)
                         });
                 }
             }).catch(err => {

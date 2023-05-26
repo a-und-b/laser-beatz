@@ -33,8 +33,12 @@ const Scoreboard = ({ highscoreList = [] }) => {
 }
 
 export const getStaticProps = async () => {
+    let highscoreList = [];
     const highscoreListRes = await getHighScoreList();
-    const highscoreList = highscoreListRes.results;
+
+    if (highscoreListRes) {
+        highscoreList = highscoreListRes.results;
+    }
 
     return { props: { highscoreList }};
 };

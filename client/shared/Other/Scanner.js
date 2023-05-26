@@ -16,7 +16,7 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
                         { facingMode: 'environment' },
                         {
                             fps: 10,    // Optional, frame per seconds for qr code scanning
-                            qrbox: { width: 250, height: 500 }  // Optional, if you want bounded box UI
+                            qrbox: { width: 500, height: 500 }  // Optional, if you want bounded box UI
                         },
                         async (decodedText, decodedResult) => {
                             console.log('DECODED', decodedText);
@@ -38,7 +38,7 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
 
     return (
         <div id='reader' style={{
-            height: '30vh', width: '100%', position: 'relative',
+            height: '50vh', width: '100%', position: 'relative',
         }} />
     );
 }

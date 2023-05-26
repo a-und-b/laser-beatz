@@ -18,7 +18,7 @@ const ScanUser = () => {
 
   const getUserByQRLinkAndRedirect = async (decodedText = 'http://pioneers-of-tomorrow.de/n9okhm5k') => {
     const userId = decodedText.split("pioneers-of-tomorrow.de/")[1];
-    alert('Fetch user:', userId);
+    // alert('Fetch user:', userId);
     const userData = await getUser(userId);
     setUser(userData);
     if (userData.userName) {
@@ -43,7 +43,7 @@ const ScanUser = () => {
 
   const onScannedQRCode = async (decodedText) => {
     console.log('osqrc', decodedText);
-    alert('Read:', decodedText);
+    // alert('Read:', decodedText);
     await getUserByQRLinkAndRedirect(decodedText);
   }
 

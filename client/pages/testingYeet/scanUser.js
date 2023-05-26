@@ -18,9 +18,7 @@ const ScanUser = () => {
 
   const getUserByQRLinkAndRedirect = async (decodedText = 'http://pioneers-of-tomorrow.de/n9okhm5k') => {
     const userId = decodedText.split("pioneers-of-tomorrow.de/")[1];
-    alert(userId);
     const userData = await getUser(userId);
-    alert(userData.username);
     setUser(userData);
     if (userData.userName) {
       router.push('/testingYeet')

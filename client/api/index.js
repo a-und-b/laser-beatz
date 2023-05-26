@@ -22,13 +22,9 @@ export const fetchApi = async (path, urlParams = {}, options = {}) => {
   const requestUrl = `${getApiUrl(
     `/${path}${query ? '?' + query : ''}`)}`
 
-  alert(requestUrl);
-
   const response = await fetch(requestUrl, mergedOptions)
-  alert('RESPONSE ??');
 
   if (!response.ok) {
-    alert('RESPONSE PROBLEM');
     console.error(response.statusText, path)
     throw new Error('fetch failed at ' + path)
   }
@@ -37,11 +33,9 @@ export const fetchApi = async (path, urlParams = {}, options = {}) => {
 }
 
 export const getUser = async (userId) => {
-  alert(`GET USER DATA...`);
   const userData = await fetchApi(`users/${userId}`, {}, {
     method: 'GET',
   });
-  alert(`GOT USER DATA, ${userData.username}`);
   localStorage.setItem('laserbeatz-user', JSON.stringify(userData));
   return userData;
 }

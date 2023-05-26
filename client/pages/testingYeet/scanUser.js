@@ -20,6 +20,7 @@ const ScanUser = () => {
     const userId = decodedText.split("pioneers-of-tomorrow.de/")[1];
     alert(userId);
     const userData = await getUser(userId);
+    alert(userData.username);
     setUser(userData);
     if (userData.userName) {
       router.push('/testingYeet')
@@ -43,7 +44,6 @@ const ScanUser = () => {
 
   const onScannedQRCode = async (decodedText) => {
     console.log('osqrc', decodedText);
-    alert(decodedText);
     await getUserByQRLinkAndRedirect(decodedText);
   }
 

@@ -11,7 +11,7 @@ const FinishedMainQuest = () => {
             </Box>
             <Typography variant='h5' sx={{ textAlign: 'center', mb: 2 }}>Quest abgeschlossen</Typography>
             <Typography variant='h1' sx={{ textAlign: 'center', mb: 2, color: theme.palette.primary.main }}>“Du hast dir einen Kristall verdient!“</Typography>
-            <Button variant='contained' sx={{ width: '100%' }} href="/questLog">
+            <Button variant='contained' sx={{ width: '100%' }} href="/testingYeet/questLog">
                 Weiter geht's!
                 <Gem />
             </Button>

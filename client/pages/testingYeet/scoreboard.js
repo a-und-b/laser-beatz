@@ -2,8 +2,18 @@ import { Box, Button, CircularProgress, Grid, Typography, useTheme } from "@mui/
 import { useEffect, useState } from "react";
 import { getHighScoreList } from "../../api";
 
-const Scoreboard = ({ highscoreList = [] }) => {
+const Scoreboard = () => {
     const theme = useTheme();
+    const [highscoreList, setHighscoreList] = useState([]);
+
+    useEffect(() => {
+        if (!highscoreList.length) {
+            getHighScoreList()
+                .then((highscoreListRes) => {
+                    setHighscoreList(highscoreListRes.results);
+                });
+        }
+    }, [highscoreList]);
 
     if (!highscoreList) {
         return (
@@ -22,7 +32,7 @@ const Scoreboard = ({ highscoreList = [] }) => {
             </Box>
             {
                 highscoreList.map((entry, index) => (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', pb:2, borderBottom: `1px dashed ${theme.palette.primary.main}`, mb:2 }} key={index}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', pb: 2, borderBottom: `1px dashed ${theme.palette.primary.main}`, mb: 2 }} key={index}>
                         <Typography variant='h4'>{entry.username}</Typography>
                         <Typography variant='h4'>{entry.score}</Typography>
                     </Box>
@@ -31,16 +41,5 @@ const Scoreboard = ({ highscoreList = [] }) => {
         </Grid>
     )
 }
-
-export const getStaticProps = async () => {
-    let highscoreList = [];
-    const highscoreListRes = await getHighScoreList();
-
-    if (highscoreListRes) {
-        highscoreList = highscoreListRes.results;
-    }
-
-    return { props: { highscoreList }};
-};
 
 export default Scoreboard;

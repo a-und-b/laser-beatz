@@ -89,7 +89,7 @@ const CryptoStation = () => {
         <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
             <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Crypto Station</Typography>
             <Typography sx={{ mb: 3 }}>Cyber Credits gesamt:</Typography>
-            <Typography variant='h2' sx={{ mb: 3 }}>{cyberCredits} / {maxCyberCredits}</Typography>
+            <Typography variant='h2' sx={{ mb: 3 }}>{cyberCredits.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true })} / {maxCyberCredits.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true })}</Typography>
             {
                 usages.map((usage, usageIndex) => (
                     <Box sx={{ mb: 3 }} key={usageIndex}>
@@ -98,7 +98,7 @@ const CryptoStation = () => {
                             <Typography>{calculateUsageShare(usage.value)}%</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px' }}>
-                            <Typography sx={{ flexGrow: 1, pl: 2, py: 2 }}>{usage.value}</Typography>
+                            <Typography sx={{ flexGrow: 1, pl: 2, py: 2 }}>{usage.value.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true })}</Typography>
                             <Box sx={{ borderLeft: `1px dashed ${theme.palette.primary.main}` }}>
                                 <Button onClick={() => updateUsage(usageIndex, 10000)}>+</Button>
                             </Box>

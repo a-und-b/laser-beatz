@@ -92,7 +92,7 @@ const Main = ({ }) => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant='h6' sx={{ mb: 2 }}>Deine Punktzahl</Typography>
-          <Typography variant='h2'>{user.score}</Typography>
+          <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true })}</Typography>
         </Grid>
       </Grid>
       <Typography variant='h3' sx={{ mb: 1}}>Abenteuer</Typography>

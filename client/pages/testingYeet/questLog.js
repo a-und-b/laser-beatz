@@ -127,7 +127,7 @@ const QuestLog = ({ }) => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant='h6' sx={{ mb: 2 }}>Deine Punktzahl</Typography>
-          <Typography variant='h2'>{user.score || '000.000'}</Typography>
+          <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true }) || '000.000'}</Typography>
         </Grid>
       </Grid>
       <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests {finishedMainQuestCount}/{mainQuests.length}</Typography>

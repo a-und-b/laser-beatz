@@ -137,7 +137,6 @@ const updateUserQuestById = async (userId, updatedQuestData) => {
 
   const { questId, userInput, pointsPerExecution } = updatedQuestData;
 
-  console.log('USER INPUT 1', userInput);
 
   const [questsToUpdate, remainingQuests] = user.quests.reduce(
     (result, quest) => {
@@ -154,21 +153,13 @@ const updateUserQuestById = async (userId, updatedQuestData) => {
     return user;
   }
 
-  console.log('USER INPUT 2', userInput);
-  
   questToUpdate.userInput = userInput;
   questToUpdate.totalFinished += 1;
   questToUpdate.totalPoints += pointsPerExecution;
-  
-  console.log('USER INPUT 3', questToUpdate.userInput);
-  console.log('QTU', questToUpdate);
-  
+
   remainingQuests.push(questToUpdate);
-  console.log('RQ', remainingQuests);
   user.quests = remainingQuests;
-  console.log('USER QUESTS', user.quests);
   user.score += pointsPerExecution;
-  console.log('USER', user);
 
   await user.save();
   return user;

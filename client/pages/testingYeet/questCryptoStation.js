@@ -91,7 +91,7 @@ const CryptoStation = () => {
                     </Box>
                 ))
             }
-            <Button variant='contained' onClick={handleSubmit}>Credits überweisen</Button>
+            <Button variant='contained' onClick={handleSubmit} sx={{ mb: 5 }}>Credits überweisen</Button>
         </Grid>
     )
 }

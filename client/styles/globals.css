@@ -21,6 +21,8 @@ a {
 
 @font-face {
     font-family: 'Metamor Bit';
+    font-style: oblique 0deg;
+    font-variation-settings: "slnt" 0;
     font-weight: 400;
     src: url('/fonts/MetamorBitVF.ttf');
 }

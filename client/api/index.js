@@ -56,7 +56,7 @@ export const getHighScoreList = async () => {
 export const updateQuest = async (user, quest) => {
   if (!quest.userInput) quest.userInput = {};
   const questData = { quest };
-  console.log('BODY', JSON.stringify(questData));
+  
   const userData = await fetchApi(`users/${user.userId}/quest`, {}, {
     method: 'PATCH',
     body: JSON.stringify(questData)

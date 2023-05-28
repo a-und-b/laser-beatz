@@ -1,12 +1,10 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import { Box, Button, Container, Fade, Grid, Typography, useTheme } from '@mui/material'
-import NextImage from 'next/image'
+import { useContext, useEffect, useState } from 'react'
+import { Box, Button, Fade, Grid, Typography, useTheme } from '@mui/material'
 import { useRouter } from 'next/router';
 import { GlobalContext } from '../../provider/GlobalProvider';
 import { getUser } from '../../api';
 import { isEmpty } from 'lodash';
-import Scanner from '../../shared/Other/Scanner';
-import ScanPlaceholder from '../../shared/Other/ScanPlaceholder';
+import ScanArea from '../../shared/Other/ScanArea';
 
 
 const ScanUser = () => {
@@ -51,15 +49,7 @@ const ScanUser = () => {
         <Typography variant="h2" sx={{ color: theme.palette.primary.main, mb: 2 }}>Pioneers Pass aktivieren</Typography>
         <Typography sx={{ mb: 2 }}>Scanne den Qr-Code auf deinem Ticket euch den Pioneers of Tomorrow an und erlebt ein Abenteuer voller die Zukunft, von der ihr träumt.</Typography>
         <Box sx={{ mb: 2, width: '100%' }}>
-          {
-            isScanning
-              ? (
-                <Scanner isScanning={isScanning} onScannedQRCode={onScannedQRCode}/>
-              )
-              : (
-                <ScanPlaceholder fill={theme.palette.primary.main} />
-              )
-          }
+          <ScanArea {...{isScanning, onScannedQRCode }} />
         </Box>
         <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
           Code scannen

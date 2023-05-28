@@ -34,6 +34,7 @@ const DigitalDistrict = () => {
     const router = useRouter();
     const questId = "2";
     const { user } = useContext(GlobalContext);
+    // const [quest, setQuest] = useState()
 
     if (!user || isEmpty(user)) {
         return '';
@@ -45,11 +46,9 @@ const DigitalDistrict = () => {
         quest.userInput = {};
     }
 
-    if (!quest.userInput?.ideas?.length) {
+    if (!quest.userInput?.districts?.length) {
         quest.userInput.districts = [];
-    }
-
-    console.log(quest.userInput);
+    } 
 
     const [districts, setDistricts] = useState(quest.userInput.districts.length ? quest.userInput.districts :  districtData);
 
@@ -57,7 +56,7 @@ const DigitalDistrict = () => {
         try {
             // TODO: user input stays empty??
             await updateQuest(user, quest);
-            router.push('/testingYeet/questLog');
+            router.push('/testingYeet/finishedMainQuest');
         } catch (error) {
             console.error(error);
         }
@@ -66,9 +65,14 @@ const DigitalDistrict = () => {
     const primaryColor = theme.palette.primary.main;
 
     const handleDistrictRatingChange = (districtIndex, rating) => {
-        districts[districtIndex].rating = rating;
-        quest.userInput.districts = districts;
-        setDistricts([...districts]);
+        const updatedDistricts = districts;
+        updatedDistricts[districtIndex].rating = rating;
+        console.log('1', updatedDistricts);
+        quest.userInput.districts = [...updatedDistricts];
+        console.log(2, quest.userInput.districts);
+        setDistricts([...updatedDistricts]);
+        console.log(3, districts);
+        return;
     }
 
     return (
@@ -78,24 +82,24 @@ const DigitalDistrict = () => {
                 <Typography variant='h6' >Orte markieren</Typography>
                 <Typography variant='h6' >{districts.filter(district => district.rating).length} von {districts.length}</Typography>
             </Box>
-            <Box sx={{ border: `1px dashed ${primaryColor}`, borderRadius: '5px' }}>
+            <Box sx={{ border: `1px dashed ${primaryColor}`, borderRadius: '5px', mb: 2 }}>
                 {
                     districts.map((district, districtIndex) => (
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px dashed ${primaryColor}` }}>
                             <Box sx={{ p: 2, flexGrow: 1 }}>
                                 <Typography>{district.name}</Typography>
                             </Box>
-                            <Box sx={{ p: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
+                            <Box sx={{ py: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
                                 <Button onClick={() => handleDistrictRatingChange(districtIndex, 'good')}>
                                     {district.rating === 'good' ? <FaceSmileFilledIcon fill={primaryColor} /> : <FaceSmileOutlineIcon fill={primaryColor} />}
                                 </Button>
                             </Box>
-                            <Box sx={{ p: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
+                            <Box sx={{ py: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
                                 <Button onClick={() => handleDistrictRatingChange(districtIndex, 'neutral')}>
                                     {district.rating === 'neutral' ? <FaceThinkingFilledIcon fill={primaryColor} /> : <FaceThinkingOutlineIcon fill={primaryColor} />}
                                 </Button>
                             </Box>
-                            <Box sx={{ p: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
+                            <Box sx={{ py: 2, borderLeft: `1px dashed ${primaryColor}`, display: 'flex', alignItems: 'center' }}>
                                 <Button onClick={() => handleDistrictRatingChange(districtIndex, 'bad')}>
                                     {district.rating === 'bad' ? <FaceFrowningFilledIcon fill={primaryColor} /> : <FaceFrowningOutlineIcon fill={primaryColor} />}
                                 </Button>
@@ -104,7 +108,7 @@ const DigitalDistrict = () => {
                     ))
                 }
             </Box>
-            <Button onClick={handleFinish}>Finish</Button>
+            <Button variant='contained' onClick={handleFinish}>Markierung übermitteln</Button>
         </Grid >
     )
 }

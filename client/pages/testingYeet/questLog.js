@@ -5,12 +5,18 @@ import NextImage from 'next/image'
 import StarFilledIcon from "../../shared/Icons/StarFilled";
 import StarOutlineIcon from "../../shared/Icons/StarOutline";
 import Gem from "../../shared/Other/Gem";
+import { useRouter } from "next/router";
 
 const QuestLog = ({ }) => {
   const theme = useTheme();
   const { user } = useContext(GlobalContext);
+  const router = useRouter();
 
-  if (!user || !user.quests) return '';
+  console.log('USER', user);
+
+  if (!user || !user.quests) {
+    return '';
+  };
 
   const mainQuests = [
     {

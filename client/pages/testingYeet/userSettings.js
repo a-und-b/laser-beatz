@@ -36,6 +36,10 @@ const UserSettings = () => {
     }
 
     const handleSubmit = async () => {
+        if (!username.length) {
+            return alert('Bitte gib einen Nutzernamen an! TODO: Dies wird noch hübscher gemacht.');
+        }
+        
         try {
             user.username = username;
             user.theme = theme.laserbeatzMode;

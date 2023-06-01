@@ -1,7 +1,9 @@
 import { Box, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 import NextImage from 'next/image'
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Countdown from 'react-countdown';
+import { getUser } from "../api";
 
 
 const Landing = () => {
@@ -16,7 +18,19 @@ const Landing = () => {
         }
     };
 
+    const func = async () => {
+        if (router.query.slug) {
+            const possibleUserId = router.query.slug;
+            const possibleUserData = await getUser(possibleUserId);
+            console.log('POSSIBLE USER DATA:', possibleUserData);
+        }
+    };
+
     console.log('USER ROUTE?', router.query);
+
+    useEffect(() => {
+        func();
+    }, []);
 
     return (
         <Grid>

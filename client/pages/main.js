@@ -1,14 +1,14 @@
 import { Box, Button, Grid, Link, Typography, useTheme } from "@mui/material"
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import { GlobalContext } from "../../provider/GlobalProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import NextImage from 'next/image'
-import ScrollIcon from "../../shared/Icons/Scroll";
-import TrophyIcon from "../../shared/Icons/Trophy";
-import HourglassIcon from "../../shared/Icons/Hourglass";
-import SparklesIcon from "../../shared/Icons/Sparkles";
-import QuestionIcon from "../../shared/Icons/Question";
+import ScrollIcon from "../shared/Icons/Scroll";
+import TrophyIcon from "../shared/Icons/Trophy";
+import HourglassIcon from "../shared/Icons/Hourglass";
+import SparklesIcon from "../shared/Icons/Sparkles";
+import QuestionIcon from "../shared/Icons/Question";
 
 const Main = ({ }) => {
   const theme = useTheme();
@@ -17,7 +17,7 @@ const Main = ({ }) => {
 
   useEffect(() => {
     if (isEmpty(user)) {
-      router.push('/testingYeet/scanUser');
+      // router.push('/scanUser');
     }
   }, [user]);
 
@@ -31,17 +31,17 @@ const Main = ({ }) => {
     {
       title: 'Quest-Log',
       icon: <ScrollIcon fill={theme.palette.primary.main} />,
-      url: '/testingYeet/questLog'
+      url: '/questLog'
     },
     {
       title: 'Live-Highscore',
       icon: <TrophyIcon fill={theme.palette.primary.main} />,
-      url: '/testingYeet/scoreboard',
+      url: '/scoreboard',
     },
     {
       title: 'Zeitplan',
       icon: <HourglassIcon fill={theme.palette.primary.main} />,
-      url: '/testingYeet/timetable'
+      url: '/timetable'
     }
   ]
 
@@ -49,12 +49,12 @@ const Main = ({ }) => {
     {
       title: 'Neuigkeiten',
       icon: <SparklesIcon fill={theme.palette.primary.main} />,
-      url: '/testingYeet/news'
+      url: '/news'
     },
     {
       title: 'Hilfe und Info',
       icon: <QuestionIcon fill={theme.palette.primary.main} />,
-      url: '/testingYeet/helpInfo'
+      url: '/helpInfo'
     },
     {
       title: 'Zeitplan',
@@ -83,7 +83,7 @@ const Main = ({ }) => {
   );
 
   const handleClick = () => {
-    router.push('/testingYeet/scan');
+    router.push('/scan');
   }
 
   return (

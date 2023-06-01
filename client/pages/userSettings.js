@@ -1,9 +1,9 @@
 import { Box, Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../provider/GlobalProvider";
-import { updateUser } from "../../api";
-import { createLaserbeatzTheme, ember, emerald, ruby } from "../../lib/theme";
+import { GlobalContext } from "../provider/GlobalProvider";
+import { updateUser } from "../api";
+import { createLaserbeatzTheme, ember, emerald, ruby } from "../lib/theme";
 
 const UserSettings = () => {
     const [username, setUsername] = useState('');
@@ -45,7 +45,7 @@ const UserSettings = () => {
             user.theme = theme.laserbeatzMode;
             setUser(user);
             await updateUser(user);
-            router.push('/testingYeet/welcomeUser');
+            router.push('/welcomeUser');
         } catch (error) {
             // TODO: handle error
         }

@@ -7,7 +7,7 @@ const HomeButton = () => {
     const router = useRouter()
 
     const handleClick = () => {
-        router.push('/testingYeet');
+        router.push('/');
     };
 
     return (

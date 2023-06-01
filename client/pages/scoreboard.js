@@ -1,6 +1,6 @@
 import { Box, Button, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getHighScoreList } from "../../api";
+import { getHighScoreList } from "../api";
 
 const Scoreboard = () => {
     const theme = useTheme();

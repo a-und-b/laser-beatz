@@ -1,10 +1,10 @@
 import { Box, Button, Grid, Link, TextField, Typography, useTheme } from "@mui/material";
 import { useContext, useState } from "react";
-import { updateQuest } from "../../api";
-import { GlobalContext } from "../../provider/GlobalProvider";
+import { updateQuest } from "../api";
+import { GlobalContext } from "../provider/GlobalProvider";
 import { isEmpty } from "lodash";
-import Gem from "../../shared/Other/Gem";
-import HomeButton from "../../shared/Other/HomeButton";
+import Gem from "../shared/Other/Gem";
+import HomeButton from "../shared/Other/HomeButton";
 
 const DreamDecoder = () => {
     const questId = "1";
@@ -95,7 +95,7 @@ const DreamDecoder = () => {
                         <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} onClick={() => handleAddAnotherIdea()}>+</Button>
                     </Grid>
                     <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                        <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} href="/testingYeet/finishedMainQuest">Erledigt</Button>
+                        <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} href="/finishedMainQuest">Erledigt</Button>
                         <Gem size={75} sx={{ position: 'absolute', right: -20 }} />
                     </Grid>
                 </Grid>

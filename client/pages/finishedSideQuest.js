@@ -9,7 +9,7 @@ const FinishedSideQuest = () => {
             <NextImage src={`/img/aurora-${theme.laserbeatzMode}.svg`} width='250' height='250' />
             </Box>
             <Typography variant='h5' sx={{ textAlign: 'center', mb: 2 }}>Side-Quest abgeschlossen</Typography>
-            <Button variant='contained' sx={{ width: '100%' }} href="/testingYeet/questLog">
+            <Button variant='contained' sx={{ width: '100%' }} href="/questLog">
                 Weiter geht's!
             </Button>
         </Grid>

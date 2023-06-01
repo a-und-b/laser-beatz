@@ -1,16 +1,16 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../provider/GlobalProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 import { isEmpty } from "lodash";
-import { updateQuest } from "../../api";
+import { updateQuest } from "../api";
 import { useRouter } from "next/router";
-import FaceSmileFilledIcon from "../../shared/Icons/FaceSmileFilled";
-import FaceSmileOutlineIcon from "../../shared/Icons/FaceSmileOutline";
-import FaceThinkingFilledIcon from "../../shared/Icons/FaceThinkingFilled";
-import FaceThinkingOutlineIcon from "../../shared/Icons/FaceThinkingOutline";
-import FaceFrowningFilledIcon from "../../shared/Icons/FaceFrowningFilled";
-import FaceFrowningOutlineIcon from "../../shared/Icons/FaceFrowningOutline";
-import Gem from "../../shared/Other/Gem";
+import FaceSmileFilledIcon from "../shared/Icons/FaceSmileFilled";
+import FaceSmileOutlineIcon from "../shared/Icons/FaceSmileOutline";
+import FaceThinkingFilledIcon from "../shared/Icons/FaceThinkingFilled";
+import FaceThinkingOutlineIcon from "../shared/Icons/FaceThinkingOutline";
+import FaceFrowningFilledIcon from "../shared/Icons/FaceFrowningFilled";
+import FaceFrowningOutlineIcon from "../shared/Icons/FaceFrowningOutline";
+import Gem from "../shared/Other/Gem";
 
 const DigitalDistrict = () => {
     const districtData = [
@@ -56,7 +56,7 @@ const DigitalDistrict = () => {
         try {
             // TODO: user input stays empty??
             await updateQuest(user, quest);
-            router.push('/testingYeet/finishedMainQuest');
+            router.push('/finishedMainQuest');
         } catch (error) {
             console.error(error);
         }

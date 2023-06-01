@@ -24,7 +24,7 @@ const SideQuest = ({ questName }) => {
         const userAfterUpdate = await updateQuest(user, quest);
         console.log(userAfterUpdate);
         setIsScanning(false);
-        router.push('/testingYeet/finishedSideQuest');
+        router.push('/finishedSideQuest');
     };
 
     const startScanner = () => {

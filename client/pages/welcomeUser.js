@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { GlobalContext } from "../../provider/GlobalProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 
 const WelcomeUser = () => {
     const theme = useTheme();
@@ -22,7 +22,7 @@ const WelcomeUser = () => {
             Wähle einen Namen – dieser ist für alle teilnehmer sichtbar und wird in der High-Score-Liste angezeigt. Außerdem kannst du eine Skin-Farbe ... Wähle einen Namen.
           </Typography>
           <Box sx={{ position: 'fixed', bottom: 0, left: 16, width: 'calc(100% - 32px)', flexGrow: 1, display: 'flex', alignItems: 'flex-end', mb: 2 }}>
-            <Button variant='contained' sx={{ width: '100%' }} href="/testingYeet">Ich bin bereit!</Button>
+            <Button variant='contained' sx={{ width: '100%' }} href="/main">Ich bin bereit!</Button>
           </Box>
         </Grid>
       )

@@ -1,7 +1,7 @@
 import { Box, Button, Grid } from "@mui/material";
 import ScanArea from "../../shared/Other/ScanArea";
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../provider/GlobalProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 import { useRouter } from "next/router";
 import { useTheme } from "@emotion/react";
 
@@ -17,9 +17,9 @@ const Scan = () => {
         const userData = await getUser(userId);
         setUser(userData);
         if (userData.userName) {
-            router.push('/testingYeet')
+            router.push('/main')
         } else {
-            router.push('/testingYeet/userSettings')
+            router.push('/userSettings')
         }
         return userData;
     };
@@ -39,9 +39,11 @@ const Scan = () => {
             <Box sx={{ mb: 2, width: '100%' }}>
                 <ScanArea {...{ isScanning, onScannedQRCode }} />
             </Box>
-            <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
-                Code scannen
-            </Button>
+            <Box sx={{ mb: 5, py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+                <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
+                    Code scannen
+                </Button>
+            </Box>
         </Grid>
     );
 }

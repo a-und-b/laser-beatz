@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { Box, Button, Fade, Grid, Typography, useTheme } from '@mui/material'
 import { useRouter } from 'next/router';
-import { GlobalContext } from '../../provider/GlobalProvider';
-import { getUser } from '../../api';
+import { GlobalContext } from '../provider/GlobalProvider';
+import { getUser } from '../api';
 import { isEmpty } from 'lodash';
-import ScanArea from '../../shared/Other/ScanArea';
+import ScanArea from '../shared/Other/ScanArea';
 
 
 const ScanUser = () => {
@@ -19,16 +19,16 @@ const ScanUser = () => {
     const userData = await getUser(userId);
     setUser(userData);
     if (userData.userName) {
-      router.push('/testingYeet')
+      router.push('')
     } else {
-      router.push('/testingYeet/userSettings')
+      router.push('/userSettings')
     }
     return userData;
   };
 
   useEffect(() => {
     if (!isEmpty(user) && user.username) {
-      router.push('/testingYeet');
+      router.push('/');
     }
 
     setTimeout(() => setLoaded(true), 600);
@@ -48,12 +48,14 @@ const ScanUser = () => {
       <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant="h2" sx={{ color: theme.palette.primary.main, mb: 2 }}>Pioneers Pass aktivieren</Typography>
         <Typography sx={{ mb: 2 }}>Scanne den Qr-Code auf deinem Ticket euch den Pioneers of Tomorrow an und erlebt ein Abenteuer voller die Zukunft, von der ihr träumt.</Typography>
-        <Box sx={{ mb: 2, width: '100%' }}>
-          <ScanArea {...{isScanning, onScannedQRCode }} />
+        <Box sx={{ mb: 15, width: '100%' }}>
+          <ScanArea {...{ isScanning, onScannedQRCode }} />
         </Box>
-        <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
-          Code scannen
-        </Button>
+        <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+          <Button variant='contained' sx={{ mb: 1, width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
+            Code scannen
+          </Button>
+        </Box>
       </Grid >
     </Fade>
   )

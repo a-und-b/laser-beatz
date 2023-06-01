@@ -9,9 +9,10 @@ const PageWrapper = ({ children }) => {
     const theme = useTheme();
     const [loaded, setLoaded] = useState(false);
     const router = useRouter();
-    const hasMenu = router.asPath !== '/testingYeet/welcomeUser';
     // TODO: remove isRoot on go live
     const isRoot = router.asPath === '/';
+    console.log(router.asPath);
+    const hasMenu = router.asPath !== '/' && router.asPath !== '/welcomeUser' && router.asPath !== '/scanUser';
 
     useEffect(() => {
         setTimeout(() => setLoaded(true), 300);
@@ -27,18 +28,18 @@ const PageWrapper = ({ children }) => {
                     <Box sx={{ mt: isRoot ? 10 : 4, mb: 4, position: 'relative', display: 'flex', height: isRoot ? 150 : 100, justifyContent: 'space-between', }}>
                         {
                             hasMenu &&
-                            <Button href="/testingYeet/scan">
+                            <Button href="/main" sx={{ zIndex: 1 }}>
                                 <ScanIcon />
                             </Button>
                         }
                         <Fade in={loaded}>
-                            <Link href='/testingYeet'>
+                            <Link href=''>
                                 <NextImage src={`/img/logo-${theme.laserbeatzMode}.svg`} layout='fill' />
                             </Link>
                         </Fade>
                         {
                             hasMenu &&
-                            <Button href="/testingYeet/welcomeUser">
+                            <Button href="/welcomeUser" sx={{ zIndex: 1 }}>
                                 <QuestionIcon />
                             </Button>
                         }

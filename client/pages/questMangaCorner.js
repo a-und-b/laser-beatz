@@ -1,4 +1,4 @@
-import SideQuest from "../../shared/Other/SideQuest";
+import SideQuest from "../shared/Other/SideQuest";
 
 const MangaCorner = () => {
     return (

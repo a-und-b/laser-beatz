@@ -1,12 +1,12 @@
 import { Box, Button, Grid, Link, Typography, useTheme } from "@mui/material"
 import { useContext } from "react";
-import { GlobalContext } from "../../provider/GlobalProvider";
+import { GlobalContext } from "../provider/GlobalProvider";
 import NextImage from 'next/image'
-import StarFilledIcon from "../../shared/Icons/StarFilled";
-import StarOutlineIcon from "../../shared/Icons/StarOutline";
-import Gem from "../../shared/Other/Gem";
+import StarFilledIcon from "../shared/Icons/StarFilled";
+import StarOutlineIcon from "../shared/Icons/StarOutline";
+import Gem from "../shared/Other/Gem";
 import { useRouter } from "next/router";
-import HomeButton from "../../shared/Other/HomeButton";
+import HomeButton from "../shared/Other/HomeButton";
 
 const QuestLog = ({ }) => {
   const theme = useTheme();
@@ -22,19 +22,19 @@ const QuestLog = ({ }) => {
   const mainQuests = [
     {
       title: 'Dream Decoder',
-      url: '/testingYeet/questDreamDecoder',
+      url: '/questDreamDecoder',
       finished: user.quests.filter(quest => quest.questId === '1')[0].totalFinished > 0,
       gemColor: 'emerald',
     },
     {
       title: 'Digital District',
-      url: '/testingYeet/questDigitalDistrict',
+      url: '/questDigitalDistrict',
       finished: user.quests.filter(quest => quest.questId === '2')[0].totalFinished > 0,
       gemColor: 'ember',
     },
     {
       title: 'Crypto Station',
-      url: '/testingYeet/questCryptoStation',
+      url: '/questCryptoStation',
       finished: user.quests.filter(quest => quest.questId === '3')[0].totalFinished > 0,
       gemColor: 'ruby',
     }
@@ -43,37 +43,37 @@ const QuestLog = ({ }) => {
   const sideQuests = [
     {
       title: 'Future Lab',
-      url: '/testingYeet/questFutureLab',
+      url: '/questFutureLab',
       finished: user.quests.filter(quest => quest.questId === '8')[0].totalFinished > 0,
     },
     {
       title: 'Manga-Corner',
-      url: '/testingYeet/questMangaCorner',
+      url: '/questMangaCorner',
       finished: user.quests.filter(quest => quest.questId === '9')[0].totalFinished > 0,
     },
     {
       title: 'Arcade Station',
-      url: '/testingYeet/questArcadeStation',
+      url: '/questArcadeStation',
       finished: user.quests.filter(quest => quest.questId === '10')[0].totalFinished > 0,
     },
     {
       title: 'Neon Schminke',
-      url: '/testingYeet/questNeonSchminke',
+      url: '/questNeonSchminke',
       finished: user.quests.filter(quest => quest.questId === '11')[0].totalFinished > 0,
     },
     {
       title: 'Grafitti Station',
-      url: '/testingYeet/questGrafittiStation',
+      url: '/questGrafittiStation',
       finished: user.quests.filter(quest => quest.questId === '12')[0].totalFinished > 0,
     },
     {
       title: 'Auto Tuning',
-      url: '/testingYeet/questAutoTuning',
+      url: '/questAutoTuning',
       finished: user.quests.filter(quest => quest.questId === '13')[0].totalFinished > 0,
     },
     {
       title: 'Reaction Game',
-      url: '/testingYeet/questReactionGame',
+      url: '/questReactionGame',
       finished: user.quests.filter(quest => quest.questId === '14')[0].totalFinished > 0,
     }
   ];
@@ -119,7 +119,7 @@ const QuestLog = ({ }) => {
   const finishedSideQuestCount = user.quests.filter((quest) => quest.type === 'sideQuest' && quest.totalFinished > 0).length;
 
   const handleClick = () => {
-    router.push('/testingYeet/scan')
+    router.push('/scan')
   }
 
   return (

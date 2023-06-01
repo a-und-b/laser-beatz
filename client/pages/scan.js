@@ -1,5 +1,5 @@
 import { Box, Button, Grid } from "@mui/material";
-import ScanArea from "../../shared/Other/ScanArea";
+import ScanArea from "../shared/Other/ScanArea";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../provider/GlobalProvider";
 import { useRouter } from "next/router";

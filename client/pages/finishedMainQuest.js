@@ -1,6 +1,6 @@
 import NextImage from 'next/image'
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
-import Gem from '../../shared/Other/Gem';
+import Gem from '../shared/Other/Gem';
 
 const FinishedMainQuest = () => {
     const theme = useTheme();

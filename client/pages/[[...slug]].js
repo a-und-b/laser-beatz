@@ -23,6 +23,10 @@ const Landing = () => {
             const possibleUserId = router.query.slug;
             const possibleUserData = await getUser(possibleUserId);
             console.log('POSSIBLE USER DATA:', possibleUserData);
+            
+            if (possibleUserData) {
+                router.push(possibleUserData.username ? '/main' : '/userSettings');
+            }
         }
     };
 

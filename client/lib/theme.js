@@ -60,53 +60,53 @@ export const createLaserbeatzTheme = (primaryColor = emerald) => {
   // Typography
   theme = createTheme(theme, {
     typography: {
-      fontFamily: ['Arial', 'Metamor Bit'], 'hero': {
+      fontFamily: ['Arial', 'VT323'], 'hero': {
         lineHeight: 1.25,
         fontWeight: 300,
         fontSize: 76,
-        fontFamily: 'Metamor Bit',
+        fontFamily: 'VT323',
       }, h1: {
         lineHeight: 1.25,
         fontWeight: 300,
-        fontSize: 65,
-        fontFamily: 'Metamor Bit',
+        fontSize: 80,
+        fontFamily: 'VT323',
       }, h2: {
-        lineHeight: 1.2, fontWeight: 300, fontSize: 32, fontFamily: 'Metamor Bit', letterSpacing: '4px'
+        lineHeight: 1.2, fontWeight: 300, fontSize: 64, fontFamily: 'VT323', letterSpacing: '4px'
       }, h3: {
-        lineHeight: 1.3, fontWeight: 400, fontSize: 25, fontFamily: 'Metamor Bit',
+        lineHeight: 1.3, fontWeight: 400, fontSize: 48, fontFamily: 'VT323', letterSpacing: '2px'
       }, h4: {
-        lineHeight: 1, fontWeight: 400, fontSize: 20, fontFamily: 'Metamor Bit',
+        lineHeight: 1, fontWeight: 400, fontSize: 40, fontFamily: 'VT323',
       }, 'first-view': {
       }, h5: {
-        lineHeight: 1, fontWeight: 400, fontSize: 14, fontFamily: 'Metamor Bit', letterSpacing: '1px'
+        lineHeight: 1, fontWeight: 400, fontSize: 28, fontFamily: 'VT323', letterSpacing: '1px'
       }, 'first-view': {
       }, h6: {
-        lineHeight: 1.75, fontWeight: 400, fontSize: 12, fontFamily: 'Metamor Bit', letterSpacing: '1px'
+        lineHeight: 1.75, fontWeight: 400, fontSize: 24, fontFamily: 'VT323', letterSpacing: '1px'
       }, 'first-view': {
         fontSize: '1.25rem',
         lineHeight: 1.5,
         fontWeight: 400,
-        fontFamily: 'Metamor Bit',
+        fontFamily: 'VT323',
       }, 'menu': {
         cursor: 'pointer', fontSize: '1rem', fontWeight: 700,
       }, 'lead': {
         lineHeight: 1.2,
         fontWeight: 300,
         fontSize: 34,
-        fontFamily: 'Metamor Bit',
+        fontFamily: 'VT323',
         color: theme.palette.primary.main,
       }, 'subtitle1': {
-        lineHeight: 1.5, fontWeight: 700, fontFamily: 'Metamor Bit',
+        lineHeight: 1.5, fontWeight: 700, fontFamily: 'VT323',
       }, 'body1': {
-        lineHeight: 1.5, fontFamily: 'Metamor Bit',
+        lineHeight: 1.2, fontFamily: 'VT323', fontSize: 28,
       }, 'body2': {
-        lineHeight: 1.2, fontFamily: 'Metamor Bit', fontSize: '1rem',
+        lineHeight: 1.2, fontFamily: 'VT323', fontSize: '1rem',
       }, 'news-date': {
         fontWeight: 700, mb: 2, textTransform: 'uppercase', fontSize: '.85rem',
       }, 'news-title': {
         fontSize: 65,
         display: 'block',
-        fontFamily: 'Metamor Bit',
+        fontFamily: 'VT323',
         textDecoration: 'underline',
         textDecorationColor: theme.palette.secondary.main,
         textUnderlineOffset: theme.spacing(1),
@@ -115,7 +115,7 @@ export const createLaserbeatzTheme = (primaryColor = emerald) => {
         lineHeight: 1.3,
         fontWeight: 400,
         fontSize: 25,
-        fontFamily: 'Metamor Bit',
+        fontFamily: 'VT323',
         position: 'relative',
         zIndex: 2,
         '::before': {
@@ -159,14 +159,14 @@ export const createLaserbeatzTheme = (primaryColor = emerald) => {
         variants: [
           {
             props: {}, style: {
-              fontFamily: 'Metamor Bit', fontWeight: 600, borderRadius: 0,
+              fontFamily: 'VT323', fontWeight: 600, borderRadius: 0,
             },
           }, {
             props: { variant: 'contained' }, style: {
               color: theme.palette.secondary.main,
-              fontFamily: 'Metamor Bit',
+              fontFamily: 'VT323',
               fontWeight: 400,
-              fontSize: 14,
+              fontSize: 24,
               lineHeight: 2,
               borderRadius: 5,
               paddingTop: 12,

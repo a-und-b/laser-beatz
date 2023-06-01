@@ -5,6 +5,7 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    text-transform: uppercase;
 }
 
 a {
@@ -20,11 +21,11 @@ a {
 
 
 @font-face {
-    font-family: 'Metamor Bit';
+    font-family: 'VT323';
     font-style: oblique 0deg;
     font-variation-settings: "slnt" 0;
     font-weight: 400;
-    src: url('/fonts/MetamorBitVF.ttf');
+    src: url('/fonts/VT323.woff2');
 }
 
 #reader video {

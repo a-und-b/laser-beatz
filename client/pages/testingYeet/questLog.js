@@ -1,4 +1,4 @@
-import { Box, Grid, Link, Typography, useTheme } from "@mui/material"
+import { Box, Button, Grid, Link, Typography, useTheme } from "@mui/material"
 import { useContext } from "react";
 import { GlobalContext } from "../../provider/GlobalProvider";
 import NextImage from 'next/image'
@@ -6,6 +6,7 @@ import StarFilledIcon from "../../shared/Icons/StarFilled";
 import StarOutlineIcon from "../../shared/Icons/StarOutline";
 import Gem from "../../shared/Other/Gem";
 import { useRouter } from "next/router";
+import HomeButton from "../../shared/Other/HomeButton";
 
 const QuestLog = ({ }) => {
   const theme = useTheme();
@@ -117,16 +118,20 @@ const QuestLog = ({ }) => {
   const finishedMainQuestCount = user.quests.filter((quest) => quest.type === 'mainQuest' && quest.totalFinished > 0).length;
   const finishedSideQuestCount = user.quests.filter((quest) => quest.type === 'sideQuest' && quest.totalFinished > 0).length;
 
+  const handleClick = () => {
+    router.push('/testingYeet/scan')
+  }
+
   return (
     <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest-Log</Typography>
       <Grid container sx={{ mb: 3 }}>
         <Grid item xs={6}>
-          <Typography variant='h6' sx={{ mb: 2 }}>Quests</Typography>
+          <Typography variant='h6' sx={{ mb: 1 }}>Quests</Typography>
           <Typography variant='h2'>{finishedQuestCount} / {user.quests.length}</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant='h6' sx={{ mb: 2 }}>Deine Punktzahl</Typography>
+          <Typography variant='h6' sx={{ mb: 1 }}>Deine Punktzahl</Typography>
           <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true }) || '000.000'}</Typography>
         </Grid>
       </Grid>
@@ -134,6 +139,11 @@ const QuestLog = ({ }) => {
       {renderMainQuestList()}
       <Typography variant='h5' sx={{ mb: 1 }}>Side-Quests {finishedSideQuestCount}/{sideQuests.length}</Typography>
       {renderSideQuestList()}
+      <Box sx={{ mb: 10 }} />
+      <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+        <HomeButton />
+        <Button variant='contained' onClick={handleClick} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Quest-Code scannen</Button>
+      </Box>
     </Grid>
   )
 }

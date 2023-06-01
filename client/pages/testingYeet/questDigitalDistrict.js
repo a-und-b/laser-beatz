@@ -10,6 +10,7 @@ import FaceThinkingFilledIcon from "../../shared/Icons/FaceThinkingFilled";
 import FaceThinkingOutlineIcon from "../../shared/Icons/FaceThinkingOutline";
 import FaceFrowningFilledIcon from "../../shared/Icons/FaceFrowningFilled";
 import FaceFrowningOutlineIcon from "../../shared/Icons/FaceFrowningOutline";
+import Gem from "../../shared/Other/Gem";
 
 const DigitalDistrict = () => {
     const districtData = [
@@ -34,7 +35,6 @@ const DigitalDistrict = () => {
     const router = useRouter();
     const questId = "2";
     const { user } = useContext(GlobalContext);
-    // const [quest, setQuest] = useState()
 
     if (!user || isEmpty(user)) {
         return '';
@@ -48,9 +48,9 @@ const DigitalDistrict = () => {
 
     if (!quest.userInput?.districts?.length) {
         quest.userInput.districts = [];
-    } 
+    }
 
-    const [districts, setDistricts] = useState(quest.userInput.districts.length ? quest.userInput.districts :  districtData);
+    const [districts, setDistricts] = useState(quest.userInput.districts.length ? quest.userInput.districts : districtData);
 
     const handleFinish = async () => {
         try {
@@ -82,7 +82,7 @@ const DigitalDistrict = () => {
                 <Typography variant='h6' >Orte markieren</Typography>
                 <Typography variant='h6' >{districts.filter(district => district.rating).length} von {districts.length}</Typography>
             </Box>
-            <Box sx={{ border: `1px dashed ${primaryColor}`, borderRadius: '5px', mb: 2 }}>
+            <Box sx={{ border: `1px dashed ${primaryColor}`, borderRadius: '5px', mb: 15 }}>
                 {
                     districts.map((district, districtIndex) => (
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px dashed ${primaryColor}` }}>
@@ -108,7 +108,13 @@ const DigitalDistrict = () => {
                     ))
                 }
             </Box>
-            <Button variant='contained' onClick={handleFinish}>Markierung übermitteln</Button>
+
+            <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+                <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                    <Button variant='contained' onClick={handleFinish} sx={{ width: '100%' }}>Markierung übermitteln</Button>
+                    <Gem size={75} sx={{ position: 'absolute', right: -20 }} />
+                </Grid>
+            </Box>
         </Grid >
     )
 }

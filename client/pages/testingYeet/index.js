@@ -1,4 +1,4 @@
-import { Box, Grid, Link, Typography, useTheme } from "@mui/material"
+import { Box, Button, Grid, Link, Typography, useTheme } from "@mui/material"
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../provider/GlobalProvider";
@@ -82,23 +82,31 @@ const Main = ({ }) => {
     </Box>
   );
 
+  const handleClick = () => {
+    router.push('/testingYeet/scan');
+  }
+
   return (
     <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Hauptmenü</Typography>
       <Grid container sx={{ mb: 3 }}>
         <Grid item xs={6}>
-          <Typography variant='h6' sx={{ mb: 2 }}>Quests</Typography>
+          <Typography variant='h6' sx={{ mb: 1 }}>Quests</Typography>
           <Typography variant='h2'>{finishedQuestCount} / {user.quests.length}</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant='h6' sx={{ mb: 2 }}>Deine Punktzahl</Typography>
+          <Typography variant='h6' sx={{ mb: 1 }}>Deine Punktzahl</Typography>
           <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true })}</Typography>
         </Grid>
       </Grid>
       <Typography variant='h3' sx={{ mb: 1}}>Abenteuer</Typography>
       {renderList(listElements1)}
-      <Typography variant='h3' sx={{ mb: 1}}>Drumherum</Typography>
-      {renderList(listElements2)}
+      <Box sx={{ mb: 8}} />
+      {/* <Typography variant='h3' sx={{ mb: 1}}>Drumherum</Typography>
+      {renderList(listElements2)} */}
+      <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+        <Button variant='contained' onClick={handleClick} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Quest-Code scannen</Button>
+      </Box>
     </Grid>
   )
 }

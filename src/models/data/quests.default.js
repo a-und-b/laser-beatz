@@ -3,7 +3,7 @@ const defaultQuestData = [
         name: 'DREAM DECODER',
         questId: 1,
         type: 'mainQuest',
-        repeatable: false,
+        repeatable: true,
         pointsPerExecution: 1000,
     },
     {

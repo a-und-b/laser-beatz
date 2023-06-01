@@ -4,6 +4,7 @@ import { updateQuest } from "../../api";
 import { GlobalContext } from "../../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import Gem from "../../shared/Other/Gem";
+import HomeButton from "../../shared/Other/HomeButton";
 
 const DreamDecoder = () => {
     const questId = "1";
@@ -67,7 +68,10 @@ const DreamDecoder = () => {
                         }
                     }}
                 />
-                <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleSaveIdea()}>Idee speichern</Button>
+                <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+                    <HomeButton />
+                    <Button variant='contained' onClick={handleSaveIdea} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Idee speichern</Button>
+                </Box>
             </Grid>
         );
     }
@@ -75,6 +79,7 @@ const DreamDecoder = () => {
 
 
     const renderListView = () => {
+        // TODO fixed button
         return (
             <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
                 <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Dream Decoder</Typography>
@@ -89,9 +94,9 @@ const DreamDecoder = () => {
                     <Grid item xs={2}>
                         <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} onClick={() => handleAddAnotherIdea()}>+</Button>
                     </Grid>
-                    <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems:'center' }}>
+                    <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                         <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} href="/testingYeet/finishedMainQuest">Erledigt</Button>
-                        <Gem size={75} sx={{position: 'absolute', right: -20 }} />
+                        <Gem size={75} sx={{ position: 'absolute', right: -20 }} />
                     </Grid>
                 </Grid>
             </Grid>

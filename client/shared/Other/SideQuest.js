@@ -4,6 +4,7 @@ import quests from "../../data/quests";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../provider/GlobalProvider";
 import { useRouter } from "next/router";
+import { updateQuest } from "../../api";
 
 const SideQuest = ({ questName }) => {
     const router = useRouter();
@@ -20,16 +21,31 @@ const SideQuest = ({ questName }) => {
 
     const quest = user.quests.filter((quest) => quest.questId === questData.questId)[0];
 
-    const onScannedQRCode = async () => {
-        const userAfterUpdate = await updateQuest(user, quest);
-        console.log(userAfterUpdate);
-        setIsScanning(false);
-        router.push('/finishedSideQuest');
+    const onScannedQRCode = async (result) => {
+        console.log('scan 1');
+        if (result.includes('pioneers-of-tomorrow.de/scannedQuest') && result.split('pioneers-of-tomorrow.de/scannedQuest/').length > 1) {
+            console.log('scan 2', result);
+            const part = result.split('pioneers-of-tomorrow.de/scannedQuest/')[1];
+            const parts = part.split('-');
+            const questId = parts[1];
+            const hash = parts[2];
+            console.log('scan 3', questId, questData);
+
+            if (questId === questData.questId) {
+                console.log('all good, give points', user, quest);
+                const userAfterUpdate = await updateQuest(user, quest);
+                console.log(userAfterUpdate);
+                setIsScanning(false);
+                router.push('/finishedSideQuest');
+            } else {
+                alert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.')
+            }
+        }
     };
 
     const startScanner = () => {
         setIsScanning(true);
-      }
+    }
 
     return (
         <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>

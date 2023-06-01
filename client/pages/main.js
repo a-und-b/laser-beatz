@@ -86,6 +86,11 @@ const Main = ({ }) => {
     router.push('/scan');
   }
 
+  const logout = () => {
+    localStorage.removeItem('laserbeatz-user');
+    router.push('/scanUser');
+  }
+
   return (
     <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Hauptmenü</Typography>
@@ -101,6 +106,9 @@ const Main = ({ }) => {
       </Grid>
       <Typography variant='h3' sx={{ mb: 1}}>Abenteuer</Typography>
       {renderList(listElements1)}
+      <Box sx={{ mb: 10, textAlign: 'center' }}>
+        <Button onClick={logout}>Ausloggen</Button>
+      </Box>
       <Box sx={{ mb: 8}} />
       {/* <Typography variant='h3' sx={{ mb: 1}}>Drumherum</Typography>
       {renderList(listElements2)} */}

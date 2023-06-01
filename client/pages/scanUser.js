@@ -19,7 +19,7 @@ const ScanUser = () => {
     const userData = await getUser(userId);
     setUser(userData);
     if (userData.userName) {
-      router.push('')
+      router.push('/main')
     } else {
       router.push('/userSettings')
     }
@@ -28,7 +28,7 @@ const ScanUser = () => {
 
   useEffect(() => {
     if (!isEmpty(user) && user.username) {
-      router.push('/');
+      router.push('/main');
     }
 
     setTimeout(() => setLoaded(true), 600);

@@ -1,61 +1,28 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../../provider/GlobalProvider";
 
 
 const ScannedQuest = () => {
     const router = useRouter();
+    const { user } = useContext(GlobalContext);
+
+    const solveQuest = async (questId) => {
+        const quest = user.quests.filter((quest) => quest.questId === questId)[0];
+        await updateQuest(user, quest);
+
+        if (false) {
+            router.push('/finishedSideQuest');
+        }
+    };
 
     useEffect(() => {
         if (router) {
             console.log(router.query.slug[0].split('-')[1]);
             console.log(router);
-            switch (router.query.slug[0].split('-')[1]) {
-                case '1':
-                    router.push('/questDreamDecoder');
-                    break;
-                case '2':
-                    router.push('/questDigitalDistrict');
-                    break;
-                case '3':
-                    router.push('/questCryptoStation');
-                    break;
-                case '4':
-                    router.push('/');
-                    break;
-                case '5':
-                    router.push('/');
-                    break;
-                case '6':
-                    router.push('/');
-                    break;
-                case '7':
-                    router.push('/');
-                    break;
-                case '8':
-                    router.push('/questFutureLab');
-                    break;
-                case '9':
-                    router.push('/questMangaCorner');
-                    break;
-                case '10':
-                    router.push('/questArcadeStation');
-                    break;
-                case '11':
-                    router.push('/questNeonSchminke');
-                    break;
-                case '12':
-                    router.push('/questGrafittiStation');
-                    break;
-                case '13':
-                    router.push('/questAutoTuning');
-                    break;
-                case '14':
-                    router.push('/');
-                    break;
-                case '15':
-                    router.push('/');
-                    break;
-            }
+            const questId = router.query.slug[0].split('-')[1];
+            solveQuest(questId);
+            // SCAN ORIGIN
         }
     }, []);
 

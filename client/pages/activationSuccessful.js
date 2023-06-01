@@ -1,4 +1,3 @@
-import { useTheme } from "@emotion/react";
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import Gem from '../shared/Other/Gem';
 import { useContext } from "react";

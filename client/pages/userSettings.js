@@ -37,7 +37,7 @@ const UserSettings = () => {
 
     const handleSubmit = async () => {
         if (!username.length) {
-            return alert('Bitte gib einen Nutzernamen an! TODO: Dies wird noch hübscher gemacht.');
+            return alert('Bitte gib einen Nutzernamen an!');
         }
         
         try {
@@ -54,7 +54,7 @@ const UserSettings = () => {
     return (
         <Grid>
             <Typography variant='h2' sx={{ color: theme.palette.primary.main }}>Willkommen, Fremde:r!</Typography>
-            <Typography sx={{ mb: 2 }}>Wähle einen Namen – dieser ist für alle teilnehmer sichtbar und wird in der High-Score-Liste angezeigt. Außerdem kannst du eine Skin-Farbe ...</Typography>
+            <Typography sx={{ mb: 2 }}>Wähle einen Namen – dieser ist für alle Teilnehmer:innen sichtbar und wird in der Highscore-Liste angezeigt.</Typography>
             <Box component="form" sx={{ width: '100%' }} noValidate autoComplete="off">
                 <Typography sx={{ fontStyle: 'italic' }}>Name eingeben</Typography>
                 <TextField

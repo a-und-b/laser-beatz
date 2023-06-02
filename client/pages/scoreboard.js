@@ -1,16 +1,19 @@
 import { Box, Button, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getHighScoreList } from "../api";
+import { getPrimaryColor } from "../lib/theme";
 
 const Scoreboard = () => {
     const theme = useTheme();
     const [highscoreList, setHighscoreList] = useState([]);
 
+    console.log('highscoreList', highscoreList);
+
     useEffect(() => {
-        if (!highscoreList.length) {
+        if (!highscoreList?.length) {
             getHighScoreList()
                 .then((highscoreListRes) => {
-                    setHighscoreList(highscoreListRes.results);
+                    setHighscoreList(highscoreListRes);
                 });
         }
     }, [highscoreList]);
@@ -33,7 +36,7 @@ const Scoreboard = () => {
             {
                 highscoreList.map((entry, index) => (
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', pb: 2, borderBottom: `1px dashed ${theme.palette.primary.main}`, mb: 2 }} key={index}>
-                        <Typography variant='h4'>{entry.username}</Typography>
+                        <Typography variant='h4' color={index < 5 ? getPrimaryColor(entry.theme) : 'white'}>{entry.username}</Typography>
                         <Typography variant='h4'>{entry.score}</Typography>
                     </Box>
                 ))

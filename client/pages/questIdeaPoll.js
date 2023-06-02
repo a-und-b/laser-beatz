@@ -65,7 +65,7 @@ const IdeaPool = () => {
 
     const handleSubmit = async () => {
         if (cyberCredits < maxCyberCredits) {
-            return alert('Bitte vergib alle Stunden (TODO: dies wird noch hübscher gemacht).');
+            return alert('Bitte vergib alle Stunden.');
         }
 
         if (!quest.userInput) {

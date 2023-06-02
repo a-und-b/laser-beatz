@@ -15,7 +15,9 @@ router
 // router.route('/bulkCreation').post(auth('manageUsers'), validate(userValidation.createUsers), userController.createUsers);
 router.route('/bulkCreation').post(validate(userValidation.createUsers), userController.createUsers);
 
-router.route('/highscore').get(auth('getUsers'), userController.getHighscores);
+router.route('/highscore').get(userController.getHighscores);
+
+router.route('/questScore/:questId').get(userController.getQuestScores);
 
 router.route('/:userId/quest').patch(/*auth('getUsers'),*/ validate(userValidation.updateQuest), userController.updateQuest);
 

@@ -1,34 +1,46 @@
 import { Box, Button, Grid, Link, TextField, Typography, useTheme } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { updateQuest } from "../api";
 import { GlobalContext } from "../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import Gem from "../shared/Other/Gem";
 import HomeButton from "../shared/Other/HomeButton";
+import ScanArea from "../shared/Other/ScanArea";
 
 const DreamDecoder = () => {
     const questId = "1";
     const theme = useTheme();
     const { user } = useContext(GlobalContext);
+    const [isScanning, setIsScanning] = useState(false);
+    const [activated, setActivated] = useState(false);
+    const [input, setInput] = useState('');
+    const [isInAddingMode, setIsInAddingMode] = useState(false);
+    const [ideas, setIdeas] = useState([]);
+    const [quest, setQuest] = useState(null);
+
+    useEffect(() => {
+        if (user?.quests) {
+            setQuest(user.quests.filter((quest) => quest.questId === questId)[0])
+        }
+        console.log('QUEST', quest);
+        if (quest?.userInput?.ideas) {
+            setIdeas(quest.userInput.ideas);
+            setIsInAddingMode(false);
+        }
+    }, [user, quest]);
 
     if (!user || isEmpty(user)) {
         return '';
     };
 
-    const quest = user.quests.filter((quest) => quest.questId === questId)[0];
-
-    if (!quest.userInput) {
+    if (quest && !quest.userInput) {
         quest.userInput = {};
+        setQuest(quest);
     }
 
-    if (!quest.userInput?.ideas?.length) {
+    if (quest && !quest?.userInput?.ideas?.length) {
         quest.userInput.ideas = [];
     }
-
-
-    const [input, setInput] = useState('');
-    const [isInAddingMode, setIsInAddingMode] = useState(!quest.userInput?.ideas.length);
-    const [ideas, setIdeas] = useState(quest.userInput?.ideas || []);
 
     console.log('DREAM DECODERR', ideas, isInAddingMode);
 
@@ -45,6 +57,28 @@ const DreamDecoder = () => {
     const handleAddAnotherIdea = () => {
         setIsInAddingMode(true);
         setInput('');
+    }
+
+    const onScannedQRCode = async (result) => {
+        if (result.includes('pioneers-of-tomorrow.de/scannedQuest') && result.split('pioneers-of-tomorrow.de/scannedQuest/').length > 1) {
+            const part = result.split('pioneers-of-tomorrow.de/scannedQuest/')[1];
+            const parts = part.split('-');
+            const questId = parts[1];
+            const hash = parts[2];
+
+            if (questId === questData.questId) {
+                setActivated(true);
+                router.push('/finishedSideQuest');
+            } else {
+                setActivated(false);
+                alert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.')
+            }
+        }
+    }
+
+
+    const startScanner = () => {
+        setIsScanning(true);
     }
 
     const renderInputView = () => {
@@ -109,6 +143,23 @@ const DreamDecoder = () => {
                 <Typography variant='h6'>„{textContent}“</Typography>
             </Box>
         )
+    }
+
+    const renderScanView = () => {
+        return (
+            <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Dream Decoder</Typography>
+                <ScanArea {...{ isScanning, onScannedQRCode }} />
+                <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+                    <HomeButton />
+                    <Button variant='contained' onClick={startScanner} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Quest-Code scannen</Button>
+                </Box>
+            </Grid>
+        );
+    }
+
+    if (!activated) {
+        // return renderScanView();
     }
 
     if (!ideas.length || isInAddingMode) {

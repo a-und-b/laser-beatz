@@ -31,18 +31,37 @@ const getUsers = catchAsync(async (req, res) => {
 });
 
 const getHighscores = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
+  // const filter = pick(req.query, ['name', 'role']);
+  const filter = null;
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await userService.queryUsers(filter, options);
   const highScoreList = [];
   result.results.forEach((resu) => {
-    const { username, score } = resu;
-    if (score > 0) {
-      highScoreList.push({ username, score });
+    const { username, score, theme } = resu;
+    if (username) {
+      highScoreList.push({ username, score, theme });
     }
   });
-  result.results = highScoreList;
-  res.send(result);
+  res.send(highScoreList);
+});
+
+const getQuestScores = catchAsync(async (req, res) => {
+  const filter = pick(req.query, ['name', 'role']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const users = await userService.queryUsers(filter, options);
+  const scores = {};
+
+  users.results.forEach((user) => {
+    user.quests.forEach((quest) => {
+      const { name, totalPoints } = quest;
+      if (!scores[name]) {
+        scores[name] = 0;
+      }
+      scores[name] += totalPoints;
+    });
+  });
+
+  res.send(scores);
 });
 
 const getUser = catchAsync(async (req, res) => {
@@ -65,6 +84,7 @@ const deleteUser = catchAsync(async (req, res) => {
 
 const updateQuest = catchAsync(async (req, res) => {
   const user = await userService.updateUserQuestById(req.params.userId, req.body.quest);
+  // TODO: socket ping
   res.send(user);
 });
 
@@ -73,6 +93,7 @@ module.exports = {
   createUsers,
   getUsers,
   getHighscores,
+  getQuestScores,
   getUser,
   updateUser,
   deleteUser,

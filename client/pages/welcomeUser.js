@@ -16,10 +16,10 @@ const WelcomeUser = () => {
         <Grid sx={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
           <Typography sx={{ mb: 2, color: theme.palette.primary.main }} variant='h4'>Hey, {user?.username || ''}!</Typography>
           <Typography sx={{ mb: 2 }}>
-            Wähle einen Namen – dieser ist für alle teilnehmer sichtbar und wird in der High-Score-Liste angezeigt. Außerdem kannst du eine Skin-Farbe ... Wähle einen Namen – dieser ist für alle teilnehmer sichtbar und wird in der High-Score-Liste angezeigt.
+          Die Zukunft des Bahnhofsviertels liegt in deinen Händen. Durch das Lösen von Quests hast du die Möglichkeit, aktiv Einfluss auf die Entwicklung unseres Viertels zu nehmen und es in eine leuchtende Zukunft zu führen.
           </Typography>
           <Typography sx={{ mb: 15 }}>
-            Wähle einen Namen – dieser ist für alle teilnehmer sichtbar und wird in der High-Score-Liste angezeigt. Außerdem kannst du eine Skin-Farbe ... Wähle einen Namen.
+          Mit Hilfe unserer KI Aurora und ihren Herlfer:innen vor Ort, sammelst du Punkte, indem du Herausforderungen meisterst und Rätsel löst. Jeder Punkt, den du verdienst, trägt dazu bei, den Verlauf des Tages zu beeinflussen und das Potential unserer Gemeinschaft zu entfalten. Du hast die Möglichkeit neue Fähigkeiten zu erlernen, neue Freundschaften zu schließen und deinen Horizont zu erweitern. 
           </Typography>
           <Box sx={{ position: 'fixed', bottom: 0, left: 16, width: 'calc(100% - 32px)', flexGrow: 1, display: 'flex', alignItems: 'flex-end', mb: 2 }}>
             <Button variant='contained' sx={{ width: '100%' }} href="/main">Ich bin bereit!</Button>

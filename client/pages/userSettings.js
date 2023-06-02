@@ -4,9 +4,10 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../provider/GlobalProvider";
 import { updateUser } from "../api";
 import { createLaserbeatzTheme, ember, emerald, ruby } from "../lib/theme";
+import { isEmpty } from "lodash";
 
 const UserSettings = () => {
-    const { user, setUser, setTheme } = useContext(GlobalContext);
+    const { user, setUser, setTheme, showAlert } = useContext(GlobalContext);
     const [username, setUsername] = useState(user?.username || '');
     const router = useRouter();
     const theme = useTheme();
@@ -37,7 +38,8 @@ const UserSettings = () => {
 
     const handleSubmit = async () => {
         if (!username.length) {
-            return alert('Bitte gib einen Nutzernamen an!');
+            showAlert('Bitte gib einen Nutzernamen an!');
+            return;
         }
         
         try {
@@ -51,9 +53,13 @@ const UserSettings = () => {
         }
     }
 
+    if (isEmpty(user)) {
+        router.push('/scanUser');
+    }
+
     return (
         <Grid>
-            <Typography variant='h2' sx={{ color: theme.palette.primary.main }}>Willkommen, Fremde:r!</Typography>
+            <Typography variant='h2' sx={{ color: theme.palette.primary.main }}>Willkommen,<br />Fremde:r!</Typography>
             <Typography sx={{ mb: 2 }}>Wähle einen Namen – dieser ist für alle Teilnehmer:innen sichtbar und wird in der Highscore-Liste angezeigt.</Typography>
             <Box component="form" sx={{ width: '100%' }} noValidate autoComplete="off">
                 <Typography sx={{ fontStyle: 'italic' }}>Name eingeben</Typography>

@@ -37,7 +37,7 @@ const IdeaPool = () => {
     const theme = useTheme();
     const router = useRouter();
     const maxCyberCredits = 8;
-    const { user } = useContext(GlobalContext);
+    const { user, showAlert } = useContext(GlobalContext);
     // console.log('USER', user);
     const quest = user && user.quests ? user.quests.filter((quest) => quest.questId === questId)[0] : null;
     // console.log('QUEST', quest?.userInput?.usages);
@@ -65,7 +65,8 @@ const IdeaPool = () => {
 
     const handleSubmit = async () => {
         if (cyberCredits < maxCyberCredits) {
-            return alert('Bitte vergib alle Stunden.');
+            showAlert('Bitte vergib alle Stunden.');
+            return;
         }
 
         if (!quest.userInput) {

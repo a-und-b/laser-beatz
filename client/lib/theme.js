@@ -66,14 +66,14 @@ export const createLaserbeatzTheme = (primaryColor = emerald) => {
         fontSize: 76,
         fontFamily: 'VT323',
       }, h1: {
-        lineHeight: 1.25,
+        lineHeight: 1,
         fontWeight: 300,
         fontSize: 80,
         fontFamily: 'VT323',
       }, h2: {
-        lineHeight: 1.2, fontWeight: 300, fontSize: 64, fontFamily: 'VT323', letterSpacing: '4px'
+        lineHeight: 1, fontWeight: 300, fontSize: 64, fontFamily: 'VT323', letterSpacing: '4px'
       }, h3: {
-        lineHeight: 1.3, fontWeight: 400, fontSize: 48, fontFamily: 'VT323', letterSpacing: '2px'
+        lineHeight: 1, fontWeight: 400, fontSize: 48, fontFamily: 'VT323', letterSpacing: '2px'
       }, h4: {
         lineHeight: 1, fontWeight: 400, fontSize: 40, fontFamily: 'VT323',
       }, 'first-view': {
@@ -81,7 +81,7 @@ export const createLaserbeatzTheme = (primaryColor = emerald) => {
         lineHeight: 1, fontWeight: 400, fontSize: 28, fontFamily: 'VT323', letterSpacing: '1px'
       }, 'first-view': {
       }, h6: {
-        lineHeight: 1.75, fontWeight: 400, fontSize: 24, fontFamily: 'VT323', letterSpacing: '1px'
+        lineHeight: 1, fontWeight: 400, fontSize: 24, fontFamily: 'VT323', letterSpacing: '1px'
       }, 'first-view': {
         fontSize: '1.25rem',
         lineHeight: 1.5,

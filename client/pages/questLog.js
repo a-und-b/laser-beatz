@@ -7,6 +7,7 @@ import StarOutlineIcon from "../shared/Icons/StarOutline";
 import Gem from "../shared/Other/Gem";
 import { useRouter } from "next/router";
 import HomeButton from "../shared/Other/HomeButton";
+import { getPrimaryColor } from "../lib/theme";
 
 const QuestLog = ({ }) => {
   const theme = useTheme();
@@ -135,7 +136,7 @@ const QuestLog = ({ }) => {
           <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true }) || '000.000'}</Typography>
         </Grid>
       </Grid>
-      <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests {finishedMainQuestCount}/{mainQuests.length}</Typography>
+      <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests <span style={{ color: finishedMainQuestCount === mainQuests.length ? getPrimaryColor('emerald') : null }}>{finishedMainQuestCount}/{mainQuests.length}</span></Typography>
       {renderMainQuestList()}
       <Typography variant='h5' sx={{ mb: 1 }}>Side-Quests {finishedSideQuestCount}/{sideQuests.length}</Typography>
       {renderSideQuestList()}

@@ -21,7 +21,7 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
                         async (decodedText, decodedResult) => {
                             console.log('DECODED', decodedText);
                             onScannedQRCode(decodedText);
-                            html5Qrcode.stop();
+                            // html5Qrcode.stop();
                         },
                         (errorMessage) => {
                             // ERROR IS THROWN WHEN NO BARCODE IS FOUND                            

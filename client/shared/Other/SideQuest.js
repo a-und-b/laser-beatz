@@ -8,7 +8,7 @@ import { updateQuest } from "../../api";
 
 const SideQuest = ({ questName }) => {
     const router = useRouter();
-    const { user } = useContext(GlobalContext);
+    const { user, showAlert } = useContext(GlobalContext);
     const [isScanning, setIsScanning] = useState(false);
     const theme = useTheme();
     const questData = quests[questName];
@@ -38,7 +38,7 @@ const SideQuest = ({ questName }) => {
                 setIsScanning(false);
                 router.push('/finishedSideQuest');
             } else {
-                alert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.')
+                showAlert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.')
             }
         }
     };

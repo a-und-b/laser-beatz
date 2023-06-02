@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../provider/GlobalProvider";
 import { isEmpty } from "lodash";
 import { updateQuest } from "../api";
@@ -11,6 +11,8 @@ import FaceThinkingOutlineIcon from "../shared/Icons/FaceThinkingOutline";
 import FaceFrowningFilledIcon from "../shared/Icons/FaceFrowningFilled";
 import FaceFrowningOutlineIcon from "../shared/Icons/FaceFrowningOutline";
 import Gem from "../shared/Other/Gem";
+import ScanArea from "../shared/Other/ScanArea";
+import HomeButton from "../shared/Other/HomeButton";
 
 const DigitalDistrict = () => {
     const districtData = [
@@ -62,13 +64,15 @@ const DigitalDistrict = () => {
     const theme = useTheme();
     const router = useRouter();
     const questId = "2";
-    const { user } = useContext(GlobalContext);
+    const { user, showAlert } = useContext(GlobalContext);
 
     if (!user || isEmpty(user)) {
         return '';
     };
 
     const quest = user.quests.filter((quest) => quest.questId === questId)[0];
+
+    console.log('QUEST', quest);
 
     if (!quest.userInput) {
         quest.userInput = {};
@@ -79,10 +83,21 @@ const DigitalDistrict = () => {
     }
 
     const [districts, setDistricts] = useState(quest.userInput.districts.length ? quest.userInput.districts : districtData);
+    const [isScanning, setIsScanning] = useState(false);
+    const [activated, setActivated] = useState(false);
+
+    useEffect(() => {
+        if (quest.totalFinished) {
+            setActivated(true);
+        }
+    }, [quest]);
 
     const handleFinish = async () => {
         try {
-            // TODO: user input stays empty??
+            if (districts.filter(district => district.rating === null).length) {
+                showAlert('Bitte stimme zu allen Orten ab.')
+                return;
+            }
             await updateQuest(user, quest);
             router.push('/finishedMainQuest');
         } catch (error) {
@@ -101,6 +116,47 @@ const DigitalDistrict = () => {
         setDistricts([...updatedDistricts]);
         console.log(3, districts);
         return;
+    }
+
+    const onScannedQRCode = async (result) => {
+        if (result.includes('pioneers-of-tomorrow.de/scannedQuest') && result.split('pioneers-of-tomorrow.de/scannedQuest/').length > 1) {
+            const part = result.split('pioneers-of-tomorrow.de/scannedQuest/')[1];
+            const parts = part.split('-');
+            const questIdPart = parts[1];
+            const hash = parts[2];
+
+            console.log('QUEST ID', questId)
+
+            if (questIdPart === questId) {
+                setActivated(true);
+                setIsScanning(false);
+            } else {
+                setActivated(false);
+                showAlert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.');
+            }
+        }
+    }
+
+
+    const startScanner = () => {
+        setIsScanning(true);
+    }
+
+    const renderScanView = () => {
+        return (
+            <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Digital District</Typography>
+                <ScanArea {...{ isScanning, onScannedQRCode }} />
+                <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+                    <HomeButton />
+                    <Button variant='contained' onClick={startScanner} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Quest-Code scannen</Button>
+                </Box>
+            </Grid>
+        );
+    }
+
+    if (!activated) {
+        return renderScanView();
     }
 
     return (
@@ -137,12 +193,16 @@ const DigitalDistrict = () => {
                 }
             </Box>
 
-            <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
-                <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                    <Button variant='contained' onClick={handleFinish} sx={{ width: '100%' }}>Markierung übermitteln</Button>
-                    <Gem size={75} sx={{ position: 'absolute', right: -20 }} />
-                </Grid>
-            </Box>
+            {
+                !quest.totalFinished && (
+                    <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+                        <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%' }}>
+                            <Button variant='contained' onClick={handleFinish} sx={{ width: '100%' }}>Markierung übermitteln</Button>
+                        </Grid>
+                    </Box>
+                )
+            }
+            {/* <Gem size={75} sx={{ position: 'absolute', right: -20 }} /> */}
         </Grid >
     )
 }

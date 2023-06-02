@@ -12,13 +12,13 @@ const Gem = ({ size = 50, sx, empty = false, type }) => {
     const getGemIcon = (gemType) => {
         switch (gemType) {
             case 'emerald':
-                return 'gem-emerald.png';
+                return 'gem-emerald.svg';
             case 'ember':
-                return 'gem-ember.png';
+                return 'gem-ember.svg';
             case 'ruby':
-                return 'gem-ruby.png';
+                return 'gem-ruby.svg';
             default:
-                return 'gem-emerald.png';
+                return 'gem-emerald.svg';
         }
     }
 

@@ -10,7 +10,7 @@ import ScanArea from "../shared/Other/ScanArea";
 const DreamDecoder = () => {
     const questId = "1";
     const theme = useTheme();
-    const { user } = useContext(GlobalContext);
+    const { user, showAlert } = useContext(GlobalContext);
     const [isScanning, setIsScanning] = useState(false);
     const [activated, setActivated] = useState(false);
     const [input, setInput] = useState('');
@@ -63,15 +63,14 @@ const DreamDecoder = () => {
         if (result.includes('pioneers-of-tomorrow.de/scannedQuest') && result.split('pioneers-of-tomorrow.de/scannedQuest/').length > 1) {
             const part = result.split('pioneers-of-tomorrow.de/scannedQuest/')[1];
             const parts = part.split('-');
-            const questId = parts[1];
+            const questIdPart = parts[1];
             const hash = parts[2];
 
-            if (questId === questData.questId) {
+            if (questIdPart === questId) {
                 setActivated(true);
-                router.push('/finishedSideQuest');
             } else {
                 setActivated(false);
-                alert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.')
+                showAlert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.');
             }
         }
     }
@@ -159,7 +158,7 @@ const DreamDecoder = () => {
     }
 
     if (!activated) {
-        // return renderScanView();
+        return renderScanView();
     }
 
     if (!ideas.length || isInAddingMode) {

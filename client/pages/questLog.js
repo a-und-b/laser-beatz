@@ -136,6 +136,11 @@ const QuestLog = ({ }) => {
           <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true }) || '000.000'}</Typography>
         </Grid>
       </Grid>
+      {
+        finishedMainQuestCount === mainQuests.length && (
+          <Typography sx={{ mb: 3 }}><span style={{ color: getPrimaryColor('emerald') }}>Glückwunsch!</span> Du hast dich wacker geschlagen. Melde dich nun an der Saftbar um dir deine wohlverdiente Belohnung abzuholen!</Typography>
+        )
+      }
       <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests <span style={{ color: finishedMainQuestCount === mainQuests.length ? getPrimaryColor('emerald') : null }}>{finishedMainQuestCount}/{mainQuests.length}</span></Typography>
       {renderMainQuestList()}
       <Typography variant='h5' sx={{ mb: 1 }}>Side-Quests {finishedSideQuestCount}/{sideQuests.length}</Typography>

@@ -10,9 +10,11 @@ const GlobalProvider = ({ children }) => {
     const [theme, setTheme] = useState(defaultTheme);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
     const [alertText, setAlertText] = useState('');
-    const showAlert = (text) => {
+    const [alertType, setAlertType] = useState('error');
+    const showAlert = (text, type = 'error') => {
         setIsAlertOpen(true);
         setAlertText(text);
+        setAlertType(type);
         setTimeout(() => {
             setIsAlertOpen(false);
         }, 6000);
@@ -36,7 +38,7 @@ const GlobalProvider = ({ children }) => {
             <ThemeProvider theme={theme}>
                 {children}
                 <Snackbar open={isAlertOpen}>
-                    <Alert severity="error" sx={{ width: '100%', fontSize: 24 }}>
+                    <Alert severity={alertType} sx={{ width: '100%', fontSize: 24 }}>
                         {alertText}
                     </Alert>
                 </Snackbar>

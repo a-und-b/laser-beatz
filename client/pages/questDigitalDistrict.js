@@ -87,7 +87,7 @@ const DigitalDistrict = () => {
     const [activated, setActivated] = useState(false);
 
     useEffect(() => {
-        if (quest.totalFinished) {
+        if (quest?.totalFinished) {
             setActivated(true);
         }
     }, [quest]);
@@ -161,7 +161,8 @@ const DigitalDistrict = () => {
 
     return (
         <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
-            <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Digital District</Typography>
+            <Typography variant='h2' sx={{ mb: 2, color: theme.palette.primary.main }}>Quest:<br />Digital District</Typography>
+            <Typography sx={{ mb: 3 }}>Bewerte verschiedene Orte im Bahnhofsviertel. Wo hältst du dich gerne auf, wo weniger? Diskutiere mit anderen Teilnehmern, wie man die Dungeons zu Safe Spaces umgestalten kann und was dafür erforderlich wäre.</Typography>
             <Box sx={{ mb: 1, display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant='h6' >Orte markieren</Typography>
                 <Typography variant='h6' >{districts.filter(district => district.rating).length} von {districts.length}</Typography>

@@ -12,7 +12,7 @@ import QuestionIcon from "../shared/Icons/Question";
 
 const Main = ({ }) => {
   const theme = useTheme();
-  const { user, setUser } = useContext(GlobalContext);
+  const { user, setUser, showAlert } = useContext(GlobalContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -90,6 +90,7 @@ const Main = ({ }) => {
     console.log('logout');
     localStorage.removeItem('laserbeatz-user');
     setUser(null);
+    showAlert('Du hast dich erfolgreich ausgeloggt!', 'success');
     router.push('/scanUser');
     console.log('scanuser');
   }

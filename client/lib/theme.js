@@ -166,13 +166,13 @@ export const createLaserbeatzTheme = (primaryColor = emerald) => {
               color: theme.palette.secondary.main,
               fontFamily: 'VT323',
               fontWeight: 400,
-              fontSize: 24,
+              fontSize: 22,
               lineHeight: 2,
               borderRadius: 5,
-              paddingTop: 12,
-              paddingBottom: 12,
-              paddingLeft: 40,
-              paddingRight: 40,
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 20,
+              paddingRight: 20,
               letterSpacing: '1.4px'
             },
           }, {

@@ -6,6 +6,7 @@ import { isEmpty } from "lodash";
 import Gem from "../shared/Other/Gem";
 import HomeButton from "../shared/Other/HomeButton";
 import ScanArea from "../shared/Other/ScanArea";
+import PlusIcon from "../shared/Icons/Plus";
 
 const DreamDecoder = () => {
     const questId = "1";
@@ -19,6 +20,10 @@ const DreamDecoder = () => {
     const [quest, setQuest] = useState(null);
 
     useEffect(() => {
+        if (quest?.totalFinished) {
+            setActivated(true);
+        }
+
         if (user?.quests) {
             setQuest(user.quests.filter((quest) => quest.questId === questId)[0])
         }
@@ -89,11 +94,11 @@ const DreamDecoder = () => {
                     variant="outlined"
                     value={input}
                     multiline
-                    minRows={10}
+                    minRows={5}
                     onChange={(event) => setInput(event.target.value)}
                     sx={{
                         width: '100%',
-                        mb: 3,
+                        mb: 15,
 
                         'fieldset': {
                             border: `1px dashed ${theme.palette.primary.main}`,
@@ -123,15 +128,19 @@ const DreamDecoder = () => {
                 <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 5 }}>
                     {ideas.map((idea, index) => renderListElement(idea, index))}
                 </Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={2}>
-                        <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} onClick={() => handleAddAnotherIdea()}>+</Button>
-                    </Grid>
-                    <Grid item xs={10} sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                        <Button variant='contained' sx={{ width: '100%', fontSize: 16 }} href="/finishedMainQuest">Erledigt</Button>
-                        <Gem size={75} sx={{ position: 'absolute', right: -20 }} />
-                    </Grid>
-                </Grid>
+                {
+                    !quest.totalFinished && (
+                        <div style={{ display: 'flex' }}>
+                            <Button variant='contained' sx={{ fontSize: 16, flexShrink: 1 }} onClick={() => handleAddAnotherIdea()}>
+                                <PlusIcon fill={theme.palette.secondary.main} />
+                            </Button>
+                            <div style={{ width: '20px' }} />
+                            <Button variant='contained' sx={{ width: '100%' }} href="/finishedMainQuest">Erledigt</Button>
+                            {/* <Gem size={75} sx={{ position: 'absolute', right: -20 }} /> */}
+
+                        </div>
+                    )
+                }
             </Grid>
         );
     }

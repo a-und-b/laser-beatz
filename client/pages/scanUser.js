@@ -48,7 +48,7 @@ const ScanUser = () => {
     <Fade in={loaded}>
       <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant="h2" sx={{ color: theme.palette.primary.main, mb: 2 }}>Pioneers Pass aktivieren</Typography>
-        <Typography sx={{ mb: 2 }}>Scanne den Qr-Code auf deinem Ticket euch den Pioneers of Tomorrow an und erlebt ein Abenteuer voller die Zukunft, von der ihr träumt.</Typography>
+        <Typography sx={{ mb: 2 }}>Scanne den QR-Code auf der Vorderseite deines Pioneers Pass und lass das Abenteuer beginnen!</Typography>
         <Box sx={{ mb: 15, width: '100%' }}>
           <ScanArea {...{ isScanning, onScannedQRCode }} />
         </Box>

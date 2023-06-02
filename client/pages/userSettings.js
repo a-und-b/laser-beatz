@@ -6,12 +6,12 @@ import { updateUser } from "../api";
 import { createLaserbeatzTheme, ember, emerald, ruby } from "../lib/theme";
 
 const UserSettings = () => {
-    const [username, setUsername] = useState('');
     const { user, setUser, setTheme } = useContext(GlobalContext);
+    const [username, setUsername] = useState(user?.username || '');
     const router = useRouter();
     const theme = useTheme();
 
-    console.log('THEME', theme.palette);
+    console.log('SETTINGS USER', user);
 
     const updateTheme = (newPrimaryColor) => {
         let primary;
@@ -64,6 +64,11 @@ const UserSettings = () => {
                     sx={{
                         width: '100%',
                         mb: 2,
+                        textTransform: 'uppercase',
+
+                        'input': {
+                            textTransform: 'uppercase',
+                        },
 
                         'fieldset': {
                             border: `1px dashed ${theme.palette.primary.main}`,

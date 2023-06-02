@@ -12,12 +12,12 @@ import QuestionIcon from "../shared/Icons/Question";
 
 const Main = ({ }) => {
   const theme = useTheme();
-  const { user } = useContext(GlobalContext);
+  const { user, setUser } = useContext(GlobalContext);
   const router = useRouter();
 
   useEffect(() => {
     if (isEmpty(user)) {
-      // router.push('/scanUser');
+      router.push('/scanUser');
     }
   }, [user]);
 
@@ -87,8 +87,11 @@ const Main = ({ }) => {
   }
 
   const logout = () => {
+    console.log('logout');
     localStorage.removeItem('laserbeatz-user');
+    setUser(null);
     router.push('/scanUser');
+    console.log('scanuser');
   }
 
   return (

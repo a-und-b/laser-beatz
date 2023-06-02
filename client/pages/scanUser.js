@@ -18,6 +18,7 @@ const ScanUser = () => {
     const userId = decodedText.split("pioneers-of-tomorrow.de/")[1];
     const userData = await getUser(userId);
     setUser(userData);
+    console.log('USER:', userData);
     if (userData.userName) {
       router.push('/main')
     } else {

@@ -9,24 +9,6 @@ const getTotalUsedCyberCredits = (usages) => {
     return usages.map(usage => usage.value).reduce((a, b) => a + b);
 }
 
-- Konzerte
-- Verschönerung des Viertels
-- Naturprojekte
-- Workshops
-- Tanzprojekt
-- Turniere
-- Sportevents
-- Ausflüge
-- Graffiti-Workshop
-- Urban Gardening
-- Partys
-- Reisen / Jugendaustausch
-- Jugendcafé / Jugendtreffpunkt
-- Flossbau / Kanutour
-- Zelten
-- Kunstprojekt
-- Märkte (z. B. Flohmarkt)
-
 const defaultUsages = [
     {
         title: 'Konzerte',

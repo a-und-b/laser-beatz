@@ -49,7 +49,7 @@ export const updateUser = async (user) => {
 }
 
 export const getHighScoreList = async () => {
- const highScoreData = await fetchApi('users/highscore?sortBy=score:desc&limit=30&page=1'); 
+ const highScoreData = await fetchApi('users/highscore?sortBy=score:desc&limit=1100&page=1'); 
  return highScoreData;
 }
 

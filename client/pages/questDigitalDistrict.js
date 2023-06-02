@@ -15,19 +15,47 @@ import Gem from "../shared/Other/Gem";
 const DigitalDistrict = () => {
     const districtData = [
         {
+            name: "Streetball-Platz",
+            rating: null,
+        },
+        {
+            name: "Bahnhof innen",
+            rating: null,
+        },
+        {
+            name: "Bahnhof außen",
+            rating: null,
+        },
+        {
             name: "Wittelsbacher Park",
             rating: null,
         },
         {
-            name: "Königstraße",
-            rating: null,
-        },
-        {
-            name: "Bahnhofsplatz",
+            name: "Rekkenzeplatz",
             rating: null,
         },
         {
             name: "Freibad",
+            rating: null,
+        },
+        {
+            name: "Lichthaus",
+            rating: null,
+        },
+        {
+            name: "Jugendzentrum Q",
+            rating: null,
+        },
+        {
+            name: "Treffpunkt",
+            rating: null,
+        },
+        {
+            name: "An der Saale",
+            rating: null,
+        },
+        {
+            name: "Luftsteg am Bahnhof",
             rating: null,
         }
     ];

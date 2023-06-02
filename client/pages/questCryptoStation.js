@@ -9,17 +9,91 @@ const getTotalUsedCyberCredits = (usages) => {
     return usages.map(usage => usage.value).reduce((a, b) => a + b);
 }
 
+- Konzerte
+- Verschönerung des Viertels
+- Naturprojekte
+- Workshops
+- Tanzprojekt
+- Turniere
+- Sportevents
+- Ausflüge
+- Graffiti-Workshop
+- Urban Gardening
+- Partys
+- Reisen / Jugendaustausch
+- Jugendcafé / Jugendtreffpunkt
+- Flossbau / Kanutour
+- Zelten
+- Kunstprojekt
+- Märkte (z. B. Flohmarkt)
+
 const defaultUsages = [
-    {
-        title: 'Sport und Bewegung',
-        value: 0
-    },
     {
         title: 'Konzerte',
         value: 0
     },
     {
-        title: 'Freizeit-Angebot 3',
+        title: 'Verschönerung des Viertels',
+        value: 0
+    },
+    {
+        title: 'Naturprojekte',
+        value: 0
+    },
+    {
+        title: 'Workshops',
+        value: 0
+    },
+    {
+        title: 'Tanzprojekt',
+        value: 0
+    },
+    {
+        title: 'Turniere',
+        value: 0
+    },
+    {
+        title: 'Sportevents',
+        value: 0
+    },
+    {
+        title: 'Ausflüge',
+        value: 0
+    },
+    {
+        title: 'Graffiti-Workshop',
+        value: 0
+    },
+    {
+        title: 'Urban Gardening',
+        value: 0
+    },
+    {
+        title: 'Partys',
+        value: 0
+    },
+    {
+        title: 'Reisen / Jugendaustausch',
+        value: 0
+    },
+    {
+        title: 'Jugendcafé / Jugendtreffpunkt',
+        value: 0
+    },
+    {
+        title: 'Flossbau / Kanutour',
+        value: 0
+    },
+    {
+        title: 'Zelten',
+        value: 0
+    },
+    {
+        title: 'Kunstprojekt',
+        value: 0
+    },
+    {
+        title: 'Märkte (z. B. Flohmarkt)',
         value: 0
     },
 ];

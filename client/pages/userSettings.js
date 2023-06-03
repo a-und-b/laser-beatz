@@ -57,6 +57,10 @@ const UserSettings = () => {
         router.push('/scanUser');
     }
 
+    if (user?.username) {
+        router.push('/main');
+    }
+
     return (
         <Grid>
             <Typography variant='h2' sx={{ color: theme.palette.primary.main }}>Willkommen,<br />Fremde:r!</Typography>

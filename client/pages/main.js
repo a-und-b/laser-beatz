@@ -116,9 +116,9 @@ const Main = ({ }) => {
       <Box sx={{ mb: 8}} />
       {/* <Typography variant='h3' sx={{ mb: 1}}>Drumherum</Typography>
       {renderList(listElements2)} */}
-      <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+      {/* <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
         <Button variant='contained' onClick={handleClick} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Quest-Code scannen</Button>
-      </Box>
+      </Box> */}
     </Grid>
   )
 }

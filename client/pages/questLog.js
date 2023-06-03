@@ -177,10 +177,10 @@ const QuestLog = ({ }) => {
       </Box>
 
       <Box sx={{ mb: 15 }} />
-      <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
+      {/* <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
         <HomeButton />
         <Button variant='contained' onClick={handleClick} sx={{ flexGrow: 1, py: 1, px: 3, ml: 1 }}>Quest-Code scannen</Button>
-      </Box>
+      </Box> */}
     </Grid>
   )
 }

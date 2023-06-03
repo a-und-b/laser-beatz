@@ -152,7 +152,7 @@ const updateUserQuestById = async (userId, updatedQuestData) => {
 
   const questToUpdate = questsToUpdate[0];
 
-  if (questToUpdate.totalFinished === 1 && !questToUpdate.repeatable) {
+  if (questToUpdate.totalFinished > 0 && !questToUpdate.repeatable) {
     // TODO: add to response that max execution amount of quest is already reached
     return user;
   }

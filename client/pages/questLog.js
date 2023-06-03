@@ -68,22 +68,22 @@ const QuestLog = ({ }) => {
     {
       title: 'Bändchen abholen',
       url: '/questBaendchen',
-      finished: user.quests.filter(quest => quest.questId === '11')[0].totalFinished > 0,
+      finished: user.quests.filter(quest => quest.questId === '5')[0].totalFinished > 0,
     },
     {
       title: 'Komm im Cosplay',
       url: '/questCosplay',
-      finished: user.quests.filter(quest => quest.questId === '11')[0].totalFinished > 0,
+      finished: user.quests.filter(quest => quest.questId === '6')[0].totalFinished > 0,
     },
     {
       title: 'Dein Musikwunsch',
       url: '/questDeinMusikwunsch',
-      finished: user.quests.filter(quest => quest.questId === '11')[0].totalFinished > 0,
+      finished: user.quests.filter(quest => quest.questId === '7')[0].totalFinished > 0,
     },
     {
       title: 'Lass dich fotografieren',
       url: '/questFoto',
-      finished: user.quests.filter(quest => quest.questId === '11')[0].totalFinished > 0,
+      finished: user.quests.filter(quest => quest.questId === '15')[0].totalFinished > 0,
     },
     {
       title: 'Reaction Game',
@@ -151,7 +151,16 @@ const QuestLog = ({ }) => {
       </Grid>
       {
         finishedMainQuestCount === mainQuests.length && (
-          <Typography sx={{ mb: 3 }}><span style={{ color: getPrimaryColor('emerald') }}>Glückwunsch!</span> Du hast dich wacker geschlagen. Melde dich nun an der Saftbar um dir deine wohlverdiente Belohnung abzuholen!</Typography>
+          <>
+            <Typography sx={{ mb: 3 }}><span style={{ color: getPrimaryColor('emerald') }}>Glückwunsch!</span> Du hast dich wacker geschlagen. Melde dich nun an der Saftbar um dir deine wohlverdiente Belohnung abzuholen!</Typography>
+            <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 4 }}>
+              <Link sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none', color: 'white' }} href={'/questPioneers'}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography variant='h3' sx={{ ml: 2 }}>Join the Pioneers</Typography>
+                </Box>
+              </Link>
+            </Box>
+          </>
         )
       }
       <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests <span style={{ color: finishedMainQuestCount === mainQuests.length ? getPrimaryColor('emerald') : null }}>{finishedMainQuestCount}/{mainQuests.length}</span></Typography>

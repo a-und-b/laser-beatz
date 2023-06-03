@@ -12,8 +12,7 @@ const SideQuest = ({ questName }) => {
     const [isScanning, setIsScanning] = useState(false);
     const theme = useTheme();
     const questData = quests[questName];
-
-    console.log('SIDE QUEST', user);
+    const [hasSent, setHasSent] = useState(false);
 
     if (!user || !user.quests) {
         return '';
@@ -22,19 +21,19 @@ const SideQuest = ({ questName }) => {
     const quest = user.quests.filter((quest) => quest.questId === questData.questId)[0];
 
     const onScannedQRCode = async (result) => {
-        console.log('scan 1');
+        console.log('HAS SENT', hasSent);
+        if (hasSent) return;
+
         if (result.includes('pioneers-of-tomorrow.de/scannedQuest') && result.split('pioneers-of-tomorrow.de/scannedQuest/').length > 1) {
-            console.log('scan 2', result);
             const part = result.split('pioneers-of-tomorrow.de/scannedQuest/')[1];
             const parts = part.split('-');
             const questId = parts[1];
             const hash = parts[2];
-            console.log('scan 3', questId, questData);
 
             if (questId === questData.questId) {
                 console.log('all good, give points', user, quest);
+                setHasSent(true);
                 const userAfterUpdate = await updateQuest(user, quest);
-                console.log(userAfterUpdate);
                 setIsScanning(false);
                 router.push('/finishedSideQuest');
             } else {

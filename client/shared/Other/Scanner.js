@@ -3,7 +3,7 @@ import { Html5Qrcode } from "html5-qrcode";
 
 const Scanner = ({ isScanning, onScannedQRCode }) => {
     useEffect(() => {
-        if (isScanning) {
+        // if (isScanning) {
             const video = document.getElementById('reader');
             const html5Qrcode = new Html5Qrcode('reader', true);
             Html5Qrcode.getCameras().then(devices => {
@@ -15,13 +15,13 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
                     html5Qrcode.start(
                         { facingMode: 'environment' },
                         {
-                            fps: 10,    // Optional, frame per seconds for qr code scanning
+                            fps: 1,    // Optional, frame per seconds for qr code scanning
                             qrbox: { width: 500, height: 500 }  // Optional, if you want bounded box UI
                         },
                         async (decodedText, decodedResult) => {
                             console.log('DECODED', decodedText);
                             onScannedQRCode(decodedText);
-                            // html5Qrcode.stop();
+                            html5Qrcode.stop();
                         },
                         (errorMessage) => {
                             // ERROR IS THROWN WHEN NO BARCODE IS FOUND                            
@@ -33,8 +33,8 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
             }).catch(err => {
                 // handle err
             });
-        }
-    }, [isScanning]);
+        // }
+    }, []);
 
     return (
         <div id='reader' style={{

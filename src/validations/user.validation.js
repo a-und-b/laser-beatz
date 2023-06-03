@@ -13,7 +13,9 @@ const createUser = {
 const createUsers = {
   body: Joi.array().items(
     Joi.object().keys({
-      numr: Joi.string().allow(null),
+      numr: Joi.string().number().allow(null),
+      quests: Joi.array().optional(),
+      id: Joi.string().optional(),
       username: Joi.string().allow(null),
       createdAt: Joi.string().allow(null),
       updatedAt: Joi.string().allow(null),

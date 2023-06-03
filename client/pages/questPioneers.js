@@ -37,7 +37,7 @@ const defaultUsages = [
 ];
 
 const IdeaPool = () => {
-    const questId = '15';
+    const questId = '4';
     const theme = useTheme();
     const router = useRouter();
     const maxCyberCredits = 8;
@@ -83,6 +83,7 @@ const IdeaPool = () => {
             quest.userInput = {};
         }
         quest.userInput.usages = usages;
+        console.log('QUEST', quest);
         await updateQuest(user, quest);
         router.push('/finishedMainQuest');
     }
@@ -137,7 +138,7 @@ const IdeaPool = () => {
     const renderScanView = () => {
         return (
             <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
-                <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Digital District</Typography>
+                <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />Join the Pioneers</Typography>
                 <ScanArea {...{ isScanning, onScannedQRCode }} />
                 <Box sx={{ py: 2, px: 2, display: 'flex', position: 'fixed', width: '100%', bottom: 0, left: 0, background: theme.palette.secondary.dark }}>
                     <HomeButton />

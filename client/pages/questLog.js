@@ -150,20 +150,25 @@ const QuestLog = ({ }) => {
         </Grid>
       </Grid>
       {
-        finishedMainQuestCount === mainQuests.length && (
+        finishedMainQuestCount >= mainQuests.length && (
           <>
             <Typography sx={{ mb: 3 }}><span style={{ color: getPrimaryColor('emerald') }}>Glückwunsch!</span> Du hast dich wacker geschlagen. Melde dich nun an der Saftbar um dir deine wohlverdiente Belohnung abzuholen!</Typography>
             <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 4 }}>
               <Link sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none', color: 'white' }} href={'/questPioneers'}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Typography variant='h3' sx={{ ml: 2 }}>Join the Pioneers</Typography>
+                  <Typography variant='h3' sx={{ ml: 1 }}>
+                    <StarFilledIcon fill={theme.palette.primary.main} />
+                    <span style={{ marginLeft: '12px' }}>
+                      Join the Pioneers
+                    </span>
+                  </Typography>
                 </Box>
               </Link>
             </Box>
           </>
         )
       }
-      <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests <span style={{ color: finishedMainQuestCount === mainQuests.length ? getPrimaryColor('emerald') : null }}>{finishedMainQuestCount}/{mainQuests.length}</span></Typography>
+      <Typography variant='h5' sx={{ mb: 1 }}>Main-Quests <span style={{ color: finishedMainQuestCount >= mainQuests.length ? getPrimaryColor('emerald') : null }}>{finishedMainQuestCount}/{mainQuests.length}</span></Typography>
       {renderMainQuestList()}
       <Typography variant='h5' sx={{ mb: 1 }}>Side-Quests {finishedSideQuestCount}/{sideQuests.length}</Typography>
       {renderSideQuestList()}

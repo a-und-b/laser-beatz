@@ -107,7 +107,12 @@ const getPioneerShares = catchAsync(async (req, res) => {
           finalShares[title] = { value: 0 };
         }
 
+        if (!finalShares.total) {
+          finalShares.total = 0;
+        }
+
         finalShares[title].value += value;
+        finalShares.total += value;
       });
     }
   });

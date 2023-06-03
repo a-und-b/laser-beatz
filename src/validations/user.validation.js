@@ -13,7 +13,7 @@ const createUser = {
 const createUsers = {
   body: Joi.array().items(
     Joi.object().keys({
-      numr: Joi.string().alphanum().allow(null),
+      numr: Joi.string().allow(null),
       quests: Joi.array().optional(),
       id: Joi.string().optional(),
       username: Joi.string().allow(null),

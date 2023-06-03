@@ -136,6 +136,10 @@ const QuestLog = ({ }) => {
     router.push('/scan')
   }
 
+  const now = (new Date()).getTime();
+  const startFinal = (new Date(2023, 5, 3, 20, 15)).getTime();
+  const isFinal = true; // now > startFinal;
+
   return (
     <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest-Log</Typography>
@@ -149,6 +153,25 @@ const QuestLog = ({ }) => {
           <Typography variant='h2'>{user.score.toLocaleString('de-DE', { minimumIntegerDigits: 6, useGrouping: true }) || '000.000'}</Typography>
         </Grid>
       </Grid>
+      {
+        isFinal && (
+          <>
+
+            <Box sx={{ border: `1px dashed ${theme.palette.primary.main}`, borderRadius: '5px', mb: 4 }}>
+              <Link sx={{ p: 2, display: 'inline-block', width: '100%', textDecoration: 'none', color: 'white' }} href={'/questFinal'}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography variant='h3' sx={{ ml: 1 }}>
+                    <StarFilledIcon fill={theme.palette.primary.main} />
+                    <span style={{ marginLeft: '12px' }}>
+                      Finale Abstimmung
+                    </span>
+                  </Typography>
+                </Box>
+              </Link>
+            </Box>
+          </>
+        )
+      }
       {
         finishedMainQuestCount >= mainQuests.length && (
           <>

@@ -42,6 +42,7 @@ const IdeaPool = () => {
     const quest = user && user.quests ? user.quests.filter((quest) => quest.questId === questId)[0] : null;
     // console.log('QUEST', quest?.userInput?.usages);
     const [usages, setUsages] = useState(defaultUsages);
+    console.log('USAGES', usages);
     // console.log('USAGES', usages);
     const [cyberCredits, setCyberCredits] = useState(0);
 

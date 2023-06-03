@@ -19,6 +19,8 @@ router.route('/highscore').get(userController.getHighscores);
 
 router.route('/questScore/:questId').get(userController.getQuestScores);
 
+router.route('/pioneerShares').get(userController.getPioneerShares);
+
 router.route('/:userId/quest').patch(/*auth('getUsers'),*/ validate(userValidation.updateQuest), userController.updateQuest);
 
 router

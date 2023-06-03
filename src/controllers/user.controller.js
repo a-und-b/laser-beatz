@@ -88,6 +88,32 @@ const updateQuest = catchAsync(async (req, res) => {
   res.send(user);
 });
 
+const getPioneerShares = catchAsync(async (req, res) => {
+  console.log('gps');
+  const filter = pick(req.query, ['name', 'role']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const users = await userService.queryUsers(filter, options);
+  console.log(users.length);
+  const finalShares = {};
+
+  users.results.forEach((user) => {
+    console.log(user.quests.length);
+    const pioneerQuest = user.quests.filter((quest) => quest.questId === '4')[0];
+    const singleUserShares = pioneerQuest.userInput.usages;
+    singleUserShares.forEach((share) => {
+      const { title, value } = share;
+
+      if (!finalShares[title]) {
+        finalShares[title] = {};
+      }
+
+      finalShares[title].value += value;
+    });
+  });
+
+  res.send(finalShares);
+});
+
 module.exports = {
   createUser,
   createUsers,
@@ -98,4 +124,5 @@ module.exports = {
   updateUser,
   deleteUser,
   updateQuest,
+  getPioneerShares,
 };

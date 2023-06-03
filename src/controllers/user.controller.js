@@ -37,8 +37,8 @@ const getHighscores = catchAsync(async (req, res) => {
   const result = await userService.queryUsers(filter, options);
   const highScoreList = [];
   result.results.forEach((resu) => {
-    const { username, score, theme } = resu;
-    if (username) {
+    const { username, score, theme, role } = resu;
+    if (username && role === 'user') {
       highScoreList.push({ username, score, theme });
     }
   });

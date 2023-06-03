@@ -27,6 +27,8 @@ const Landing = () => {
             if (possibleUserData) {
                 router.push(possibleUserData.username ? '/main' : '/userSettings');
             }
+        } else {
+            router.push('/scanUser');
         }
     };
 
@@ -55,13 +57,14 @@ const Landing = () => {
                 <Typography variant='h3' sx={{ color: theme.palette.primary.main, position: 'absolute' }}>000:00:00</Typography>
             </Box> */}
             <Box sx={{ textAlign: 'center' }}>
-                <Countdown
+                <CircularProgress />
+                {/* <Countdown
                     date={new Date(Date.UTC(2023, 5, 3, 14, 0, 0))}
                     renderer={renderer}
                     zeroPadTime={2}
                 />
                 <Typography variant="h3" sx={{ mt: 5 }}>Bald gibt es hier mehr zu sehen. Mehr Infos auf dem <br /> <a style={{ color: theme.palette.primary.main }} href="https://cdn.andersundbesser.de/pioneers/pioneers-flyer.pdf" target="_blank">Flyer</a>.</Typography>
-                <Typography variant="h3" sx={{ mt: 5 }}>Kostenlos und für alle im Alter von 12 bis 27 Jahren!</Typography>
+                <Typography variant="h3" sx={{ mt: 5 }}>Kostenlos und für alle im Alter von 12 bis 27 Jahren!</Typography> */}
             </Box>
         </Grid >
     );

@@ -91,6 +91,13 @@ const defaultQuestData = [
         repeatable: true,
         pointsPerExecution: 250,
     },
+    {
+        name: 'FINALE ABSTIMMUNG',
+        questId: 17,
+        type: 'mainQuest',
+        repeatable: false,
+        pointsPerExecution: 0,
+    },
 ];
 
 module.exports = defaultQuestData;

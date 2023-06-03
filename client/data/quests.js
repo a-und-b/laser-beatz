@@ -65,6 +65,20 @@ const quests = {
         questId: '16',
         hash: 'SJYCTOP0',
         url: '/scannedQuest/quest-16-SJYCTOP0'
+    },
+    pioneers: {
+        title: 'Join the pioneers',
+        description: 'Add description',
+        questId: '4',
+        hash: '9JPTN78X',
+        url: '/scannedQuest/quest-4-9JPTN78X'
+    },
+    final: {
+        title: 'Finale Abstimmung',
+        description: 'Add description',
+        questId: '16',
+        hash: 'V0D3N32O',
+        url: '/scannedQuest/quest-17-V0D3N32O'
     }
 };
 

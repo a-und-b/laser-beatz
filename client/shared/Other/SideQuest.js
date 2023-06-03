@@ -6,11 +6,12 @@ import { GlobalContext } from "../../provider/GlobalProvider";
 import { useRouter } from "next/router";
 import { updateQuest } from "../../api";
 
-const SideQuest = ({ questName }) => {
+const SideQuest = ({ questName, isPioneer }) => {
     const router = useRouter();
     const { user, showAlert } = useContext(GlobalContext);
     const [isScanning, setIsScanning] = useState(false);
     const theme = useTheme();
+    console.log(questName);
     const questData = quests[questName];
     const [hasSent, setHasSent] = useState(false);
 
@@ -35,7 +36,7 @@ const SideQuest = ({ questName }) => {
                 setHasSent(true);
                 const userAfterUpdate = await updateQuest(user, quest);
                 setIsScanning(false);
-                router.push('/finishedSideQuest');
+                router.push(isPioneer ? '/finishedPioneer' : '/finishedSideQuest');
             } else {
                 showAlert('Der gescannte Code passt nicht zu dieser Quest. Bitte wähle die richtige Quest für diesen Code aus.')
             }

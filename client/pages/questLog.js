@@ -19,7 +19,7 @@ const QuestLog = ({ }) => {
 
   useEffect(() => {
     if (isEmpty(user)) {
-      router.push('/scanUser');
+      // router.push('/scanUser');
     }
   }, [user]);
 

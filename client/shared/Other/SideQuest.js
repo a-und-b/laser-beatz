@@ -49,15 +49,29 @@ const SideQuest = ({ questName }) => {
 
     return (
         <Grid sx={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
-            <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>Quest:<br />{questData.title}</Typography>
-            <Typography sx={{ mb: 3 }}>Mach dich auf die Suche und spreche die richtigen Charaktere an, um zu erfahren, wie du bei dieser Quest Punkte sammeln kannst.</Typography>
+            <Typography variant='h2' sx={{ mb: 3, color: theme.palette.primary.main }}>
+                {questName !== 'bonus' && (<>Quest:<br /></>)}
+                {questData.title}
+            </Typography>
+            {
+                questName === 'bonus'
+                    ? (
+                        <>
+                            <Typography sx={{ mb: 3 }}>Wenn du dir Bonuspunkte verdient hast, scanne den QR-Code, den du erhalten hast, um sie einzusammeln!</Typography>
+                            <Typography sx={{ mb: 3 }}>Gesammelt: {quest?.totalPoints || 0}</Typography>
+                        </>
+                    )
+                    : (
+                        <Typography sx={{ mb: 3 }}>Mach dich auf die Suche und spreche die richtigen Charaktere an, um zu erfahren, wie du bei dieser Quest Punkte sammeln kannst.</Typography>
+                    )
+            }
             <Box sx={{ mb: 3 }}>
                 <ScanArea isScanning={isScanning} onScannedQRCode={onScannedQRCode} />
             </Box>
             <Button variant='contained' sx={{ width: '100%', color: theme.palette.secondary.main }} onClick={() => startScanner()}>
                 Code scannen
             </Button>
-        </Grid>
+        </Grid >
     )
 }
 

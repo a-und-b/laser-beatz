@@ -3,7 +3,7 @@ import { Html5Qrcode } from "html5-qrcode";
 
 const Scanner = ({ isScanning, onScannedQRCode }) => {
     useEffect(() => {
-        // if (isScanning) {
+        if (isScanning) {
             const video = document.getElementById('reader');
             const html5Qrcode = new Html5Qrcode('reader', true);
             Html5Qrcode.getCameras().then(devices => {
@@ -33,7 +33,7 @@ const Scanner = ({ isScanning, onScannedQRCode }) => {
             }).catch(err => {
                 // handle err
             });
-        // }
+        }
     }, [isScanning]);
 
     return (

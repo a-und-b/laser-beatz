@@ -60,6 +60,9 @@ const DreamDecoder = () => {
     }
 
     const handleAddAnotherIdea = () => {
+        if (ideas.length === 5) {
+            return;
+        }
         setIsInAddingMode(true);
         setInput('');
     }
@@ -131,10 +134,16 @@ const DreamDecoder = () => {
                 {
                     !quest.totalFinished && (
                         <div style={{ display: 'flex' }}>
-                            <Button variant='contained' sx={{ fontSize: 16, flexShrink: 1 }} onClick={() => handleAddAnotherIdea()}>
-                                <PlusIcon fill={theme.palette.secondary.main} />
-                            </Button>
-                            <div style={{ width: '20px' }} />
+                            {
+                                ideas.length < 5 && (
+                                    <>
+                                        <Button variant='contained' sx={{ fontSize: 16, flexShrink: 1 }} onClick={() => handleAddAnotherIdea()}>
+                                            <PlusIcon fill={theme.palette.secondary.main} />
+                                        </Button>
+                                        <div style={{ width: '20px' }} />
+                                    </>
+                                )
+                            }
                             <Button variant='contained' sx={{ width: '100%' }} href="/finishedMainQuest">Erledigt</Button>
                             {/* <Gem size={75} sx={{ position: 'absolute', right: -20 }} /> */}
 

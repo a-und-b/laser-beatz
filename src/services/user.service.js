@@ -136,12 +136,6 @@ const updateUserQuestById = async (userId, updatedQuestData) => {
 
   const { questId, userInput, pointsPerExecution } = updatedQuestData;
 
-  // DREAM DECODER EXCEPTION
-  if (questId === '1') {
-    
-  }
-
-
   const [questsToUpdate, remainingQuests] = user.quests.reduce(
     (result, quest) => {
       result[quest.questId === questId ? 0 : 1].push(quest);
@@ -159,11 +153,20 @@ const updateUserQuestById = async (userId, updatedQuestData) => {
 
   questToUpdate.userInput = userInput;
   questToUpdate.totalFinished += 1;
-  questToUpdate.totalPoints = questToUpdate.totalFinished * pointsPerExecution;
+
+  if (questId === '1') {
+    questToUpdate.totalPoints = 1000 + (userInput.ideas.length - 1) * 500;
+  } else {
+    questToUpdate.totalPoints = questToUpdate.totalFinished * pointsPerExecution;
+  }
 
   remainingQuests.push(questToUpdate);
   user.quests = remainingQuests;
-  user.score += pointsPerExecution;
+  if (questId === '1') {
+    user.score += 1000 + (userInput.ideas.length - 1) * 500;
+  } else {
+    user.score += pointsPerExecution;
+  }
 
   await user.save();
   return user;

@@ -142,7 +142,7 @@ const QuestLog = ({ }) => {
       <Grid container sx={{ mb: 3 }}>
         <Grid item xs={6}>
           <Typography variant='h6' sx={{ mb: 1 }}>Quests</Typography>
-          <Typography variant='h2'>{finishedQuestCount} / {user.quests.length}</Typography>
+          <Typography variant='h2'>{finishedQuestCount} / {mainQuests.length + sideQuests.length + 1}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant='h6' sx={{ mb: 1 }}>Deine Punktzahl</Typography>

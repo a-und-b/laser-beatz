@@ -21,6 +21,8 @@ router.route('/questScore/:questId').get(userController.getQuestScores);
 
 router.route('/pioneerShares').get(userController.getPioneerShares);
 
+router.route('/ideas').get(userController.getIdeas);
+
 router.route('/:userId/quest').patch(/*auth('getUsers'),*/ validate(userValidation.updateQuest), userController.updateQuest);
 
 router

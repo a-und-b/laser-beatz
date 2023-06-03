@@ -93,26 +93,47 @@ const getPioneerShares = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const users = await userService.queryUsers(filter, options);
-  console.log(users.length);
   const finalShares = {};
 
   users.results.forEach((user) => {
-    console.log(user.quests.length);
     const pioneerQuest = user.quests.filter((quest) => quest.questId === '4')[0];
-    console.log(pioneerQuest);
-    const singleUserShares = pioneerQuest.userInput.usages;
-    singleUserShares.forEach((share) => {
-      const { title, value } = share;
+    if (pioneerQuest.userInput && pioneerQuest.userInput.usages) {
+      console.log(pioneerQuest);
+      const singleUserShares = pioneerQuest.userInput.usages;
+      singleUserShares.forEach((share) => {
+        const { title, value } = share;
 
-      if (!finalShares[title]) {
-        finalShares[title] = {};
-      }
+        if (!finalShares[title]) {
+          finalShares[title] = {};
+        }
 
-      finalShares[title].value += value;
-    });
+        finalShares[title].value += value;
+      });
+    }
   });
 
   res.send(finalShares);
+});
+
+const getIdeas = catchAsync(async (req, res) => {
+  const filter = pick(req.query, ['name', 'role']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const users = await userService.queryUsers(filter, options);
+  const ideas = [];
+
+  users.results.forEach((user) => {
+    const ideaQuest = user.quests.filter((quest) => quest.questId === '1')[0];
+    if (ideaQuest.userInput && ideaQuest.userInput.ideas) {
+      ideaQuest.userInput.ideas.forEach((idea) => {
+        ideas.push({
+          idea,
+          user: user.username,
+        });
+      });
+    }
+  });
+
+  res.send(ideas);
 });
 
 module.exports = {
@@ -126,4 +147,5 @@ module.exports = {
   deleteUser,
   updateQuest,
   getPioneerShares,
+  getIdeas,
 };

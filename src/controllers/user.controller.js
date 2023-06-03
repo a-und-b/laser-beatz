@@ -98,9 +98,9 @@ const getPioneerShares = catchAsync(async (req, res) => {
   users.results.forEach((user) => {
     const pioneerQuest = user.quests.filter((quest) => quest.questId === '4')[0];
     if (pioneerQuest.userInput && pioneerQuest.userInput.usages) {
-      console.log(pioneerQuest);
       const singleUserShares = pioneerQuest.userInput.usages;
       singleUserShares.forEach((share) => {
+        console.log(share);
         const { title, value } = share;
 
         if (!finalShares[title]) {

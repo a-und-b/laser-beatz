@@ -49,7 +49,6 @@ const queryUsers = async (filter, options) => {
  * @returns {Promise<User>}
  */
 const getUserByUserId = async (userId) => {
-  console.log('GET BY USERID', userId);
   return User.findOne({ userId });
 };
 
@@ -115,7 +114,7 @@ const updateUserByUserId = async (userId, updateBody) => {
  * @returns {Promise<User>}
  */
 const deleteUserById = async (userId) => {
-  const user = await getUserById(userId);
+  const user = await getUserByUserId(userId);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }

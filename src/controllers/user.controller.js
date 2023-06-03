@@ -104,7 +104,7 @@ const getPioneerShares = catchAsync(async (req, res) => {
         const { title, value } = share;
 
         if (!finalShares[title]) {
-          finalShares[title] = {};
+          finalShares[title] = { value: 0 };
         }
 
         finalShares[title].value += value;

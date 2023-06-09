@@ -10,8 +10,10 @@ const PageWrapper = ({ children }) => {
     const [loaded, setLoaded] = useState(false);
     const router = useRouter();
     // TODO: remove isRoot on go live
-    const isRoot = router.asPath === '/';
-    const hasMenu = router.asPath !== '/' && router.asPath !== '/welcomeUser' && router.asPath !== '/scanUser';
+    // const isRoot = router.asPath === '/';
+    // const hasMenu = router.asPath !== '/' && router.asPath !== '/welcomeUser' && router.asPath !== '/scanUser';
+    const isRoot = false;
+    const hasMenu = false;
 
     useEffect(() => {
         setTimeout(() => setLoaded(true), 300);
